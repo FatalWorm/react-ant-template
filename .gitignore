@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+doc/_/
+.husky/_/
+.husky/.protection-verified
 
 # Editor directories and files
 .vscode/*
