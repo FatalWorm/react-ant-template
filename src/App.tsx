@@ -10,6 +10,7 @@ import { useLocaleStore } from '@/store';
 import { env } from '@/config/env';
 import { I18nProvider } from '@/i18n';
 import { getAntTheme } from '@/config/antTheme';
+import { GlobalStyles } from '@/styles/GlobalStyles';
 
 const ReactQueryDevtools = env.isDev
   ? lazy(() =>
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <GlobalStyles />
       <ConfigProvider
         theme={antTheme}
         locale={antLocale}

@@ -4,7 +4,7 @@ import type { ThemeConfig } from 'antd';
 type TThemeMode = 'dark' | 'light';
 
 /** Общие токены — разделяемые между dark и light */
-const sharedTokens = {};
+const sharedTokens: ThemeConfig['token'] = {};
 
 const darkConfig: ThemeConfig = {
   algorithm: theme.darkAlgorithm,

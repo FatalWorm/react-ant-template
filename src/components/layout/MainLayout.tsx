@@ -28,12 +28,7 @@ export function MainLayout() {
   ];
 
   return (
-    <Layout
-      style={{
-        minHeight: 'calc(100vh - 64px)',
-        width: '100%',
-      }}
-    >
+    <Layout style={{ minHeight: '100vh', width: '100%' }}>
       <Header
         style={{
           display: 'flex',
