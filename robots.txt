@@ -1,0 +1,9 @@
+User-agent: Yandex
+disallow: /about
+disallow: /admin/*
+allow: /user
+
+User-agent: Googlebot
+disallow: /admin/*
+
+Sitemap: https://sitemap.xml
