@@ -7,28 +7,19 @@ import type { TTranslations } from '@/i18n';
 
 const { Title, Paragraph } = Typography;
 
-interface IRowData {
+type TRowData = {
   id: number;
   name: string;
   email: string;
   date: string;
   status: 'active' | 'inactive' | 'pending';
-}
+};
 
-const STATUSES: IRowData['status'][] = ['active', 'inactive', 'pending'];
-const NAMES = [
-  'Алексей',
-  'Мария',
-  'Иван',
-  'Елена',
-  'Дмитрий',
-  'Ольга',
-  'Сергей',
-  'Анна',
-];
+const STATUSES: TRowData['status'][] = ['active', 'inactive', 'pending'];
+const NAMES = ['Алексей', 'Мария', 'Иван', 'Елена', 'Дмитрий', 'Ольга', 'Сергей', 'Анна'];
 const DOMAINS = ['mail.ru', 'yandex.ru', 'gmail.com', 'outlook.com'];
 
-function generateData(count: number): IRowData[] {
+function generateData(count: number): TRowData[] {
   return Array.from({ length: count }, (_, i) => ({
     id: i + 1,
     name: NAMES[i % NAMES.length],
@@ -43,10 +34,7 @@ function generateData(count: number): IRowData[] {
 
 const ITEM_COUNT = 10_000;
 
-function getStatusLabel(
-  status: IRowData['status'],
-  t: TTranslations,
-): string {
+function getStatusLabel(status: TRowData['status'], t: TTranslations): string {
   switch (status) {
     case 'active':
       return t.listDemo.statusActive;
@@ -61,7 +49,7 @@ function ListDemo() {
   const { t } = useTranslation();
   const data = useMemo(() => generateData(ITEM_COUNT), []);
 
-  const columns: ColumnsType<IRowData> = useMemo(
+  const columns: ColumnsType<TRowData> = useMemo(
     () => [
       { title: t.listDemo.colId, dataIndex: 'id', width: 80 },
       { title: t.listDemo.colName, dataIndex: 'name', width: 150 },
@@ -71,17 +59,13 @@ function ListDemo() {
         title: t.listDemo.colStatus,
         dataIndex: 'status',
         width: 120,
-        render: (status: IRowData['status']) => {
-          const colorMap: Record<IRowData['status'], string> = {
+        render: (status: TRowData['status']) => {
+          const colorMap: Record<TRowData['status'], string> = {
             active: 'green',
             pending: 'orange',
             inactive: 'red',
           };
-          return (
-            <Tag color={colorMap[status]}>
-              {getStatusLabel(status, t)}
-            </Tag>
-          );
+          return <Tag color={colorMap[status]}>{getStatusLabel(status, t)}</Tag>;
         },
       },
     ],
@@ -91,14 +75,14 @@ function ListDemo() {
   return (
     <div>
       <Title level={2}>{t.listDemo.title}</Title>
-      <Paragraph type="secondary" style={{ marginBottom: 24 }}>
-        {t.listDemo.subtitle.replace(
-          '{count}',
-          ITEM_COUNT.toLocaleString('ru'),
-        )}
+      <Paragraph
+        type="secondary"
+        style={{ marginBottom: 24 }}
+      >
+        {t.listDemo.subtitle.replace('{count}', ITEM_COUNT.toLocaleString('ru'))}
       </Paragraph>
 
-      <Table<IRowData>
+      <Table<TRowData>
         dataSource={data}
         columns={columns}
         rowKey="id"

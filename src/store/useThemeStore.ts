@@ -4,13 +4,13 @@ import { STORAGE_KEYS } from '@/storage';
 
 type TThemeMode = 'dark' | 'light';
 
-interface IThemeState {
+type TThemeState = {
   mode: TThemeMode;
   toggleTheme: () => void;
   setMode: (mode: TThemeMode) => void;
-}
+};
 
-export const useThemeStore = create<IThemeState>()(
+export const useThemeStore = create<TThemeState>()(
   persist(
     (set) => ({
       mode: 'dark' as TThemeMode,
@@ -25,6 +25,6 @@ export const useThemeStore = create<IThemeState>()(
     {
       name: STORAGE_KEYS.THEME_MODE,
       partialize: (state) => ({ mode: state.mode }),
-    }
-  )
+    },
+  ),
 );

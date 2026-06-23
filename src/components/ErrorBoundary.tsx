@@ -2,26 +2,26 @@ import { Component, type ErrorInfo, type ReactNode } from 'react';
 import { Result, Button } from 'antd';
 import { I18nContext } from '@/i18n';
 
-interface IProps {
+type TProps = {
   children: ReactNode;
   fallback?: ReactNode;
-}
+};
 
-interface IState {
+type TState = {
   hasError: boolean;
   error: Error | null;
-}
+};
 
-export class ErrorBoundary extends Component<IProps, IState> {
+export class ErrorBoundary extends Component<TProps, TState> {
   static contextType = I18nContext;
   declare context: React.ContextType<typeof I18nContext>;
 
-  constructor(props: IProps) {
+  constructor(props: TProps) {
     super(props);
     this.state = { hasError: false, error: null };
   }
 
-  static getDerivedStateFromError(error: Error): IState {
+  static getDerivedStateFromError(error: Error): TState {
     return { hasError: true, error };
   }
 

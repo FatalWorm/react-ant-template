@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 doc/_/
+dev/
 .husky/_/
 .husky/.protection-verified
 

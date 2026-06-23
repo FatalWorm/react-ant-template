@@ -1,10 +1,10 @@
-import type { IApiResponse } from './apiResponse.interface';
+import type { TApiResponse } from './apiResponse.type';
 
 /**
  * Интерфейс пагинированного API-ответа.
  */
-export interface IPaginatedResponse<T> extends IApiResponse<T[]> {
+export type TPaginatedResponse<T extends TApiResponse<T[]>> = {
   total: number;
   page: number;
   pageSize: number;
-}
+};

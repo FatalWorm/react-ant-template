@@ -1,28 +1,28 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import type { IUser } from '@/types/user.interface';
-import type { ILoginCredentials } from '@/types/loginCredentials.interface';
-import type { IRegisterCredentials } from '@/types/registerCredentials.interface';
+import type { TUser } from '@/types/user.type';
+import type { TLoginCredentials } from '@/types/loginCredentials.type';
+import type { TRegisterCredentials } from '@/types/registerCredentials.type';
 import { API } from '@/api';
 import { Storage } from '@/storage';
 
-interface IAuthState {
+type TAuthState = {
   // Состояние
-  user: IUser | null;
+  user: TUser | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   error: string | null;
 
   // Действия
-  login: (credentials: ILoginCredentials) => Promise<void>;
-  register: (credentials: IRegisterCredentials) => Promise<void>;
+  login: (credentials: TLoginCredentials) => Promise<void>;
+  register: (credentials: TRegisterCredentials) => Promise<void>;
   logout: () => void;
   checkAuth: () => Promise<void>;
-  setUser: (user: IUser) => void;
+  setUser: (user: TUser) => void;
   clearError: () => void;
-}
+};
 
-export const useAuthStore = create<IAuthState>()(
+export const useAuthStore = create<TAuthState>()(
   immer((set) => ({
     user: null,
     isAuthenticated: false,
@@ -47,8 +47,7 @@ export const useAuthStore = create<IAuthState>()(
       } catch (err) {
         set((state) => {
           state.isLoading = false;
-          state.error =
-            err instanceof Error ? err.message : 'Ошибка авторизации';
+          state.error = err instanceof Error ? err.message : 'Ошибка авторизации';
         });
         throw err;
       }
@@ -72,8 +71,7 @@ export const useAuthStore = create<IAuthState>()(
       } catch (err) {
         set((state) => {
           state.isLoading = false;
-          state.error =
-            err instanceof Error ? err.message : 'Ошибка регистрации';
+          state.error = err instanceof Error ? err.message : 'Ошибка регистрации';
         });
         throw err;
       }
@@ -132,5 +130,5 @@ export const useAuthStore = create<IAuthState>()(
       set((state) => {
         state.error = null;
       }),
-  }))
+  })),
 );

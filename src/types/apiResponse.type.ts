@@ -1,8 +1,8 @@
 /**
  * Общий интерфейс API-ответа.
  */
-export interface IApiResponse<T> {
+export type TApiResponse<T> = {
   data: T;
   message?: string;
   success: boolean;
-}
+};

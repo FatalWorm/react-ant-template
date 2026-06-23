@@ -1,4 +1,4 @@
-import type { IAuthTokens } from '@/types/authTokens.interface';
+import type { TAuthTokens } from '@/types/authTokens.type';
 import { STORAGE_KEYS } from '../keys';
 import { ULocalStorage } from '../localStorage.util';
 
@@ -11,7 +11,7 @@ export const tokenStorage = {
     return ULocalStorage.getItem(STORAGE_KEYS.REFRESH_TOKEN);
   },
 
-  setTokens(tokens: IAuthTokens): void {
+  setTokens(tokens: TAuthTokens): void {
     ULocalStorage.setItem(STORAGE_KEYS.ACCESS_TOKEN, tokens.accessToken);
     ULocalStorage.setItem(STORAGE_KEYS.REFRESH_TOKEN, tokens.refreshToken);
   },

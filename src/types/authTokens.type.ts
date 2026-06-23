@@ -1,4 +1,4 @@
-export interface IAuthTokens {
+export type TAuthTokens = {
   accessToken: string;
   refreshToken: string;
-}
+};

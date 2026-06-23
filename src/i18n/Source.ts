@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import type { TDotPaths } from '@/types/DotPaths.type';
+import type { TDotPaths } from '@/types/dotPaths.type';
 import type { TDeepStringify } from '@/types/deepStringify.type';
 import type { Locale as AntLocale } from 'antd/es/locale';
 import ruRU from 'antd/locale/ru_RU';

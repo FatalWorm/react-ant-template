@@ -1,16 +1,16 @@
 import { apiClient } from '../client';
-import type { ILoginCredentials } from '@/types/loginCredentials.interface';
-import type { IRegisterCredentials } from '@/types/registerCredentials.interface';
-import type { IAuthTokens } from '@/types/authTokens.interface';
-import type { IUser } from '@/types/user.interface';
+import type { TLoginCredentials } from '@/types/loginCredentials.type';
+import type { TRegisterCredentials } from '@/types/registerCredentials.type';
+import type { TAuthTokens } from '@/types/authTokens.type';
+import type { TUser } from '@/types/user.type';
 import type { TAuthResponse } from '@/types/authResponse.type';
 
 export const authApi = {
-  async login(credentials: ILoginCredentials): Promise<TAuthResponse> {
+  async login(credentials: TLoginCredentials): Promise<TAuthResponse> {
     return apiClient.post('auth/login', { json: credentials }).json<TAuthResponse>();
   },
 
-  async register(credentials: IRegisterCredentials): Promise<TAuthResponse> {
+  async register(credentials: TRegisterCredentials): Promise<TAuthResponse> {
     return apiClient.post('auth/register', { json: credentials }).json<TAuthResponse>();
   },
 
@@ -22,13 +22,13 @@ export const authApi = {
     }
   },
 
-  async refreshToken(refreshToken: string): Promise<IAuthTokens> {
+  async refreshToken(refreshToken: string): Promise<TAuthTokens> {
     return apiClient
       .post('auth/refresh', { json: { refreshToken } })
-      .json<IAuthTokens>();
+      .json<TAuthTokens>();
   },
 
-  async getProfile(signal?: AbortSignal): Promise<IUser> {
-    return apiClient.get('auth/profile', { signal }).json<IUser>();
+  async getProfile(signal?: AbortSignal): Promise<TUser> {
+    return apiClient.get('auth/profile', { signal }).json<TUser>();
   },
 };

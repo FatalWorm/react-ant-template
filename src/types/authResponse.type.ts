@@ -1,7 +1,7 @@
-import type { IUser } from './user.interface';
-import type { IAuthTokens } from './authTokens.interface';
+import type { TUser } from './user.type';
+import type { TAuthTokens } from './authTokens.type';
 
 export type TAuthResponse = {
-  user: IUser;
-  tokens: IAuthTokens;
+  user: TUser;
+  tokens: TAuthTokens;
 };

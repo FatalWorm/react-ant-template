@@ -63,19 +63,19 @@ export class ULocalStorage {
 
 ## Именование файлов
 
-| Сущность    | Паттерн файла                 | Пример                        |
-|-------------|-------------------------------|-------------------------------|
-| Тип         | `typeName.type.ts`            | `nullable.type.ts`            |
-| Интерфейс   | `interfaceName.interface.ts`  | `apiResponse.interface.ts`    |
-| Компонент   | `ComponentName.tsx`           | `MainLayout.tsx`              |
-| Стили (custom) | `ComponentName.styled.ts`  | `CustomChart.styled.ts`       |
-| Контекст    | `name.context.ts`             | `i18n.context.ts`             |
-| Провайдер   | `NameProvider.tsx`            | `I18nProvider.tsx`            |
-| Хук         | `useHookName.ts`              | `useDebounce.ts`              |
-| Стор        | `useStoreName.ts`             | `useAppStore.ts`              |
-| API-модуль  | `moduleName.api.ts`           | `auth.api.ts`                 |
-| Утилита     | `className.util.ts`           | `localStorage.util.ts`        |
-| Тест        | `ComponentName.test.tsx`      | `App.test.tsx`                |
+| Сущность       | Паттерн файла                | Пример                     |
+| -------------- | ---------------------------- | -------------------------- |
+| Тип            | `typeName.type.ts`           | `nullable.type.ts`         |
+| Интерфейс      | `interfaceName.interface.ts` | `apiResponse.interface.ts` |
+| Компонент      | `ComponentName.tsx`          | `MainLayout.tsx`           |
+| Стили (custom) | `ComponentName.styled.ts`    | `CustomChart.styled.ts`    |
+| Контекст       | `name.context.ts`            | `i18n.context.ts`          |
+| Провайдер      | `NameProvider.tsx`           | `I18nProvider.tsx`         |
+| Хук            | `useHookName.ts`             | `useDebounce.ts`           |
+| Стор           | `useStoreName.ts`            | `useAppStore.ts`           |
+| API-модуль     | `moduleName.api.ts`          | `auth.api.ts`              |
+| Утилита        | `className.util.ts`          | `localStorage.util.ts`     |
+| Тест           | `ComponentName.test.tsx`     | `App.test.tsx`             |
 
 ---
 
@@ -98,10 +98,10 @@ export class ULocalStorage {
 
 ### Когда использовать antd vs styled-components
 
-| Задача | Инструмент |
-|---|---|
-| Стандартный UI (кнопки, формы, таблицы, layout) | `antd` |
-| Кастомная стилизация antd-компонентов | `style` prop + `theme.useToken()` |
-| Уникальные визуальные компоненты (графики, кастомные виджеты) | `styled-components` |
+| Задача                                                        | Инструмент                        |
+| ------------------------------------------------------------- | --------------------------------- |
+| Стандартный UI (кнопки, формы, таблицы, layout)               | `antd`                            |
+| Кастомная стилизация antd-компонентов                         | `style` prop + `theme.useToken()` |
+| Уникальные визуальные компоненты (графики, кастомные виджеты) | `styled-components`               |
 
 > **Правило:** не дублировать компоненты antd через styled-components.
