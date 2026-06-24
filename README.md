@@ -4,40 +4,36 @@
 
 ## 🚀 Стек технологий
 
-| Категория | Технология |
-|---|---|
-| Core | React 19, TypeScript |
-| Сборка | Vite |
-| UI Фреймворк | Ant Design |
-| Стилизация | styled-components |
-| Клиентское состояние | Zustand + Immer |
-| Серверное состояние | React Query |
-| Роутинг | React Router DOM |
-| Формы | React Hook Form + Zod |
-| HTTP | Ky |
-| Даты | Luxon |
-| Тесты | Vitest + Testing Library |
-| Линтинг | ESLint + Prettier |
-| Git-хуки | Husky + lint-staged |
+| Категория                | Технология                     |
+| ------------------------ | ------------------------------ |
+| **Core**                 | React 19, TypeScript           |
+| **Архитектура**          | Feature-Sliced Design (FSD)    |
+| **Сборка**               | Vite                           |
+| **UI Фреймворк**         | Ant Design 5 (Theme Tokens)    |
+| **Стилизация**           | styled-components + Ant Tokens |
+| **Локализация**          | i18next (ru / en)              |
+| **Клиентское состояние** | Zustand + Immer                |
+| **Серверное состояние**  | TanStack Query (React Query)   |
+| **Роутинг**              | React Router DOM               |
+| **Формы**                | React Hook Form + Zod          |
+| **HTTP**                 | Ky                             |
+| **Даты**                 | Luxon                          |
+| **Тесты**                | Vitest + Testing Library       |
+| **Линтинг**              | ESLint + Prettier              |
+| **Git-хуки**             | Husky + lint-staged            |
 
 ## 📁 Структура проекта
 
+Проект построен в соответствии с методологией **Feature-Sliced Design (FSD)** для обеспечения высокой масштабируемости и чистоты архитектуры:
+
 ```
 src/
-├── __tests__/         # Общие тесты, моки и хелперы
-├── api/               # Слой API (ky инстанс, эндпоинты)
-├── components/        # Переиспользуемые UI-компоненты
-│   └── layout/        # Layout-компоненты (MainLayout, Header)
-├── config/            # Конфигурация приложения (env.ts)
-├── hooks/             # Кастомные хуки (useDebounce и т.д.)
-├── i18n/              # Конфигурация локализации и переводы
-├── pages/             # Страницы (HomePage, AboutPage, и др.)
-├── router/            # Настройка роутинга
-├── storage/           # Управление локальным хранилищем (токены, настройки)
-├── store/             # Zustand-сторы
-├── styles/            # Тема, глобальные стили, типы styled-components
-├── types/             # Общие TypeScript-типы
-└── utils/             # Утилиты (форматирование дат и т.д.)
+├── app/               # Инициализация приложения: провайдеры, роутер, глобальные стили, главный стор
+├── pages/             # Страницы приложения (Home, About, Login, Register)
+├── widgets/           # Самостоятельные композиционные блоки (MainLayout, Header, Footer)
+├── features/          # Пользовательские сценарии и бизнес-логика (Auth, ThemeToggle, LocaleToggle)
+├── entities/          # Бизнес-сущности без привязки к логике фичей (User)
+└── shared/            # Переиспользуемый код (API, UI-kit, i18n, utils, config, types)
 ```
 
 ## ⚡ Быстрый старт
@@ -58,15 +54,15 @@ npm run preview
 
 ## 📋 Доступные скрипты
 
-| Команда | Описание |
-|---|---|
-| `npm run dev` | Запуск dev-сервера с HMR |
-| `npm run build` | Сборка для production |
-| `npm run preview` | Предпросмотр production-сборки |
-| `npm run lint` | Проверка кода ESLint |
-| `npm run format` | Форматирование кода Prettier |
-| `npm run test` | Запуск тестов |
-| `npm run test:watch` | Тесты в watch-режиме |
+| Команда              | Описание                       |
+| -------------------- | ------------------------------ |
+| `npm run dev`        | Запуск dev-сервера с HMR       |
+| `npm run build`      | Сборка для production          |
+| `npm run preview`    | Предпросмотр production-сборки |
+| `npm run lint`       | Проверка кода ESLint           |
+| `npm run format`     | Форматирование кода Prettier   |
+| `npm run test`       | Запуск тестов                  |
+| `npm run test:watch` | Тесты в watch-режиме           |
 
 ## 🔧 Переменные окружения
 
@@ -76,10 +72,10 @@ npm run preview
 cp .env.example .env
 ```
 
-| Переменная | Описание | По умолчанию |
-|---|---|---|
-| `VITE_API_URL` | Базовый URL API | `http://localhost:3000/api` |
-| `VITE_APP_TITLE` | Название приложения | `React Template App` |
+| Переменная       | Описание            | По умолчанию                |
+| ---------------- | ------------------- | --------------------------- |
+| `VITE_API_URL`   | Базовый URL API     | `http://localhost:3000/api` |
+| `VITE_APP_TITLE` | Название приложения | `React Template App`        |
 
 ## 📄 Лицензия
 
