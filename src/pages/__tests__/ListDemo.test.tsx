@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect, beforeEach } from 'vitest';
+import { beforeEach,describe, expect, it } from 'vitest';
+
 import App from '@/App';
+
 import { mockAuthenticated } from '../../__tests__/helpers/authHelpers';
 
 describe('ListDemoPage', () => {

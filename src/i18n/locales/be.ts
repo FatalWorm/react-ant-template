@@ -1,4 +1,4 @@
-import type { TTranslations } from '../Source';
+import type { TTranslations } from '../i18n.types';
 
 export const be: TTranslations = {
   common: {

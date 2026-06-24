@@ -1,6 +1,7 @@
+import { Button,Result } from 'antd';
 import { Component, type ErrorInfo, type ReactNode } from 'react';
-import { Result, Button } from 'antd';
-import { I18nContext } from '@/i18n';
+
+import { I18nContext } from '@/i18n/i18n.context';
 
 type TProps = {
   children: ReactNode;

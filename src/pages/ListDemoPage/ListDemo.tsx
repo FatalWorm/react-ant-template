@@ -1,9 +1,11 @@
-import { useMemo } from 'react';
 import { Table, Tag, Typography } from 'antd';
-import { DateTime } from 'luxon';
 import type { ColumnsType } from 'antd/es/table';
-import { useTranslation } from '@/i18n';
-import type { TTranslations } from '@/i18n';
+import { DateTime } from 'luxon';
+import { useMemo } from 'react';
+
+import { PageWrapper } from '@/components/PageWrapper';
+import type { TTranslations } from '@/i18n/i18n.types';
+import { useTranslation } from '@/i18n/useTranslation';
 
 const { Title, Paragraph } = Typography;
 
@@ -73,7 +75,7 @@ function ListDemo() {
   );
 
   return (
-    <div>
+    <PageWrapper>
       <Title level={2}>{t.listDemo.title}</Title>
       <Paragraph
         type="secondary"
@@ -90,7 +92,7 @@ function ListDemo() {
         scroll={{ y: 500 }}
         pagination={false}
       />
-    </div>
+    </PageWrapper>
   );
 }
 

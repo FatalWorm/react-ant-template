@@ -1,22 +1,17 @@
-import { Spin } from 'antd';
-import { useTranslation } from '@/i18n';
+import { Spin, type SpinProps } from 'antd';
 
-export function LoadingFallback() {
+import { PageWrapper, type TPageWrapperProps } from '@/components/PageWrapper';
+import { useTranslation } from '@/i18n/useTranslation';
+
+export type TLoadingFallbackProps = {
+  spin?: SpinProps;
+  wrapper?: Omit<TPageWrapperProps, 'children'>;
+};
+
+export function LoadingFallback({ spin, wrapper }: TLoadingFallbackProps) {
   const { t } = useTranslation();
 
-  return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: 300,
-      }}
-    >
-      <Spin size="large" tip={t.common.loading}>
-        {/* Spin with tip requires a child element */}
-        <div style={{ padding: 50 }} />
-      </Spin>
-    </div>
-  );
+  return (<PageWrapper {...wrapper}>
+    <Spin fullscreen size="large" tip={t.common.loading} {...spin} />
+  </PageWrapper>);
 }

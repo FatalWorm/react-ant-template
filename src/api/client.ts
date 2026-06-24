@@ -1,4 +1,5 @@
 import ky from 'ky';
+
 import { env } from '@/config/env';
 import { Storage } from '@/storage';
 

@@ -1,7 +1,8 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuthStore } from '@/store';
+
 import { LoadingFallback } from '@/components/LoadingFallback';
 import { env } from '@/config/env';
+import { useAuthStore } from '@/store';
 
 export function GuestRoute() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);

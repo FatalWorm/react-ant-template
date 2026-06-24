@@ -1,9 +1,5 @@
-import { apiClient } from '../client';
-import type { TLoginCredentials } from '@/types/loginCredentials.type';
-import type { TRegisterCredentials } from '@/types/registerCredentials.type';
-import type { TAuthTokens } from '@/types/authTokens.type';
-import type { TUser } from '@/types/user.type';
-import type { TAuthResponse } from '@/types/authResponse.type';
+import { apiClient } from '../../client';
+import type { TAuthResponse, TAuthTokens, TLoginCredentials, TRegisterCredentials, TUser } from './auth.types';
 
 export const authApi = {
   async login(credentials: TLoginCredentials): Promise<TAuthResponse> {

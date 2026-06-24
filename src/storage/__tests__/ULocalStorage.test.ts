@@ -1,6 +1,7 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { ULocalStorage } from '@/storage/localStorage.util';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { STORAGE_KEYS } from '@/storage';
+import { ULocalStorage } from '@/storage/localStorage.util';
 
 describe('ULocalStorage', () => {
   beforeEach(() => {

@@ -1,10 +1,8 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
-import type { TUser } from '@/types/user.type';
-import type { TLoginCredentials } from '@/types/loginCredentials.type';
-import type { TRegisterCredentials } from '@/types/registerCredentials.type';
-import { API } from '@/api';
-import { Storage } from '@/storage';
+
+import type { TLoginCredentials, TRegisterCredentials, TUser } from '@/api/modules/auth/auth.types';
+import { AuthRepository } from '@/repositories/auth.repository';
 
 type TAuthState = {
   // Состояние
@@ -36,11 +34,10 @@ export const useAuthStore = create<TAuthState>()(
       });
 
       try {
-        const response = await API.auth.login(credentials);
-        Storage.tokens.setTokens(response.tokens);
+        const user = await AuthRepository.login(credentials);
 
         set((state) => {
-          state.user = response.user;
+          state.user = user;
           state.isAuthenticated = true;
           state.isLoading = false;
         });
@@ -60,11 +57,10 @@ export const useAuthStore = create<TAuthState>()(
       });
 
       try {
-        const response = await API.auth.register(credentials);
-        Storage.tokens.setTokens(response.tokens);
+        const user = await AuthRepository.register(credentials);
 
         set((state) => {
-          state.user = response.user;
+          state.user = user;
           state.isAuthenticated = true;
           state.isLoading = false;
         });
@@ -78,8 +74,7 @@ export const useAuthStore = create<TAuthState>()(
     },
 
     logout: () => {
-      API.auth.logout();
-      Storage.tokens.clearTokens();
+      AuthRepository.logout();
 
       set((state) => {
         state.user = null;
@@ -90,11 +85,8 @@ export const useAuthStore = create<TAuthState>()(
     },
 
     checkAuth: async () => {
-      const accessToken = Storage.tokens.getAccessToken();
-      const refreshToken = Storage.tokens.getRefreshToken();
-
       // Нет ни одного токена — не авторизован
-      if (!accessToken && !refreshToken) {
+      if (!AuthRepository.hasTokens()) {
         set((state) => {
           state.isLoading = false;
           state.isAuthenticated = false;
@@ -106,14 +98,14 @@ export const useAuthStore = create<TAuthState>()(
       // Если access token протух — afterResponse hook в client.ts
       // автоматически обновит его через refresh token и повторит запрос.
       try {
-        const user = await API.auth.getProfile();
+        const user = await AuthRepository.getProfile();
         set((state) => {
           state.user = user;
           state.isAuthenticated = true;
           state.isLoading = false;
         });
       } catch {
-        Storage.tokens.clearTokens();
+        AuthRepository.clearTokens();
         set((state) => {
           state.isLoading = false;
           state.isAuthenticated = false;

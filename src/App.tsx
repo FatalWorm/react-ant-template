@@ -1,15 +1,17 @@
-import { Suspense, useEffect, lazy, useMemo } from 'react';
-import { RouterProvider } from 'react-router-dom';
-import { ConfigProvider, App as AntApp, Spin } from 'antd';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { queryClient } from '@/config/queryClient';
+import { App as AntApp, ConfigProvider } from 'antd';
+import { lazy, Suspense, useEffect, useMemo } from 'react';
+import { RouterProvider } from 'react-router-dom';
+
 import { ErrorBoundary } from '@/components/ErrorBoundary';
+import { LoadingFallback } from '@/components/LoadingFallback';
+import { getAntTheme } from '@/config/antTheme';
+import { env } from '@/config/env';
+import { queryClient } from '@/config/queryClient';
+import { I18nProvider } from '@/i18n/i18n.provider';
 import { router } from '@/router/routes';
 import { useAuthStore, useThemeStore } from '@/store';
 import { useLocaleStore } from '@/store';
-import { env } from '@/config/env';
-import { I18nProvider } from '@/i18n';
-import { getAntTheme } from '@/config/antTheme';
 import { GlobalStyles } from '@/styles/GlobalStyles';
 
 const ReactQueryDevtools = env.isDev
@@ -32,22 +34,19 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GlobalStyles />
       <ConfigProvider
         theme={antTheme}
         locale={antLocale}
       >
         <AntApp>
+          <GlobalStyles />
           <I18nProvider>
             <ErrorBoundary>
               <Suspense
                 fallback={
-                  <Spin
-                    size="large"
-                    style={{
-                      margin: '20vh auto',
-                      display: 'block',
-                    }}
+                  <LoadingFallback
+                    wrapper={{ justify: 'center', align: 'center', style: { minHeight: '100vh' } }}
+                    spin={{ size: 'large' }}
                   />
                 }
               >

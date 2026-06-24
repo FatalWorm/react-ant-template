@@ -1,5 +1,5 @@
-import { apiClient } from '../client';
-import type { TExampleItem } from '@/types/exampleItem.interface';
+import { apiClient } from '../../client';
+import type { TExampleItem } from './example.types';
 
 export const exampleApi = {
   async getItems(signal?: AbortSignal): Promise<TExampleItem[]> {

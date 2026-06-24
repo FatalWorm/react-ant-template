@@ -1,4 +1,11 @@
-import type { TApiResponse } from './apiResponse.type';
+/**
+ * Общий интерфейс API-ответа.
+ */
+export type TApiResponse<T> = {
+  data: T;
+  message?: string;
+  success: boolean;
+};
 
 /**
  * Интерфейс пагинированного API-ответа.

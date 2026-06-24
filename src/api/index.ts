@@ -1,5 +1,5 @@
-import { authApi } from './modules/auth.api';
-import { exampleApi } from './modules/example.api';
+import { authApi } from './modules/auth/auth.api';
+import { exampleApi } from './modules/example/example.api';
 
 export const API = {
   auth: authApi,

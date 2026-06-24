@@ -1,5 +1,7 @@
-import { Typography, Card, Space, Flex } from 'antd';
-import { useTranslation } from '@/i18n';
+import { Card, Flex, Space, Typography } from 'antd';
+
+import { PageWrapper } from '@/components/PageWrapper';
+import { useTranslation } from '@/i18n/useTranslation';
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -18,37 +20,38 @@ function AboutPage() {
   ];
 
   return (
-    <Flex
-      justify="center"
-      align="center"
-      orientation="vertical"
-    >
-      <Title level={2}>{t.about.title}</Title>
-      <Paragraph
-        type="secondary"
-        style={{ fontSize: 18, lineHeight: 1.7, marginBottom: 32 }}
+    <PageWrapper maxWidth={800} style={{ margin: '0 auto' }}>
+      <Flex
+        vertical
+        align="center"
       >
-        {t.about.description}
-      </Paragraph>
+        <Title level={2}>{t.about.title}</Title>
+        <Paragraph
+          type="secondary"
+          style={{ fontSize: 18, lineHeight: 1.7, marginBottom: 32, textAlign: 'center' }}
+        >
+          {t.about.description}
+        </Paragraph>
 
-      <Title level={3}>{t.about.includedTitle}</Title>
-      <Space
-        orientation="vertical"
-        style={{ width: '100%' }}
-        size="small"
-      >
-        {techStack.map((item) => (
-          <Card
-            key={item.name}
-            size="small"
-          >
-            <Text strong>{item.name}</Text>
-            <br />
-            <Text type="secondary">{item.desc}</Text>
-          </Card>
-        ))}
-      </Space>
-    </Flex>
+        <Title level={3}>{t.about.includedTitle}</Title>
+        <Space
+          direction="vertical"
+          style={{ width: '100%' }}
+          size="small"
+        >
+          {techStack.map((item) => (
+            <Card
+              key={item.name}
+              size="small"
+            >
+              <Text strong>{item.name}</Text>
+              <br />
+              <Text type="secondary">{item.desc}</Text>
+            </Card>
+          ))}
+        </Space>
+      </Flex>
+    </PageWrapper>
   );
 }
 

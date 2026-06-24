@@ -47,14 +47,14 @@ export interface IAppState {
 
 ## Утилиты (Utilities)
 
-- **Приставка**: все утилитарные классы должны иметь приставку `U`
+- **Именование**: классы-утилиты пишутся в `PascalCase`
 - **Файлы**: каждый экспортируемый утилитарный класс выносится в отдельный файл по схеме `className.util.ts`
 
 ### Примеры
 
 ```typescript
 // файл: src/utils/localStorage.util.ts
-export class ULocalStorage {
+export class LocalStorage {
   static getItem() {}
 }
 ```

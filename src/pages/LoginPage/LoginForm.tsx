@@ -1,10 +1,13 @@
-import { useMemo } from 'react';
-import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useNavigate, Link } from 'react-router-dom';
-import { Card, Form, Input, Button, Alert, Typography } from 'antd';
+import { Alert, Button, Card, Form, Input, Typography } from 'antd';
+import { useMemo } from 'react';
+import { Controller,useForm } from 'react-hook-form';
+import { Link,useNavigate } from 'react-router-dom';
+
+import { PageWrapper } from '@/components/PageWrapper';
+import { useTranslation } from '@/i18n/useTranslation';
 import { useAuthStore } from '@/store';
-import { useTranslation } from '@/i18n';
+
 import { createLoginSchema, type TLoginForm } from './loginForm.schema';
 
 const { Title, Text } = Typography;
@@ -37,14 +40,10 @@ function LoginForm() {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh',
-        padding: 24,
-      }}
+    <PageWrapper
+      justify="center"
+      align="center"
+      style={{ minHeight: '100vh' }}
     >
       <Card style={{ width: '100%', maxWidth: 420 }}>
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
@@ -115,7 +114,7 @@ function LoginForm() {
           </Text>
         </div>
       </Card>
-    </div>
+    </PageWrapper>
   );
 }
 

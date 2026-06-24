@@ -1,6 +1,8 @@
+import { Card, Col, Row, Tag, theme, Typography } from 'antd';
 import { DateTime } from 'luxon';
-import { Typography, Card, Row, Col, Tag, theme } from 'antd';
-import { useTranslation } from '@/i18n';
+
+import { PageWrapper } from '@/components/PageWrapper';
+import { useTranslation } from '@/i18n/useTranslation';
 import { useLocaleStore } from '@/store';
 
 const { Title, Paragraph, Text } = Typography;
@@ -51,7 +53,7 @@ function HomePage() {
   ];
 
   return (
-    <div>
+    <PageWrapper>
       <div style={{ textAlign: 'center', padding: '64px 0 48px' }}>
         <Tag
           color="blue"
@@ -99,7 +101,7 @@ function HomePage() {
           </Col>
         ))}
       </Row>
-    </div>
+    </PageWrapper>
   );
 }
 

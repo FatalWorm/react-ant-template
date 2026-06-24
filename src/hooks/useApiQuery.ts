@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
 import type { UseQueryOptions } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 /**
  * Типизированная обёртка над useQuery + ky.

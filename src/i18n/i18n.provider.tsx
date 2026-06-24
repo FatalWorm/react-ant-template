@@ -1,9 +1,10 @@
 import type { ReactNode } from 'react';
-import { useLocaleStore } from '@/store';
-import { env } from '@/config/env';
-import { ANT_LOCALES } from '@/i18n';
 
-import { I18nContext, LOCALES } from './Source';
+import { env } from '@/config/env';
+import { useLocaleStore } from '@/store';
+
+import { ANT_LOCALES, LOCALES } from './i18n.constants';
+import { I18nContext } from './i18n.context';
 
 export function I18nProvider({ children }: { children: ReactNode }) {
   const locale = useLocaleStore((s) => s.locale);

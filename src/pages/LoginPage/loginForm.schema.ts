@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import type { TTranslations } from '@/i18n';
+
+import type { TTranslations } from '@/i18n/i18n.types';
 
 export function createLoginSchema(t: TTranslations) {
   return z.object({

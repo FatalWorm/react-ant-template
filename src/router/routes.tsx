@@ -1,8 +1,9 @@
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+
 import { MainLayout } from '@/components/layout/MainLayout';
-import { ProtectedRoute } from '@/router/ProtectedRoute';
 import { GuestRoute } from '@/router/GuestRoute';
+import { ProtectedRoute } from '@/router/ProtectedRoute';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const AboutPage = lazy(() => import('@/pages/AboutPage'));

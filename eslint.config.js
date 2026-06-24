@@ -3,6 +3,10 @@ import globals from 'globals';
 import tseslint from 'typescript-eslint';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import reactPlugin from 'eslint-plugin-react';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
+import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import eslintConfigPrettier from 'eslint-config-prettier';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
@@ -15,14 +19,33 @@ export default defineConfig([
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
     ],
+    plugins: {
+      react: reactPlugin,
+      'jsx-a11y': jsxA11y,
+      'simple-import-sort': simpleImportSort,
+    },
+    settings: {
+      react: {
+        version: '19.2.6',
+      },
+    },
     languageOptions: {
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.es2021,
+      },
       parserOptions: {
         // Автоматически находит ближайший tsconfig.json для каждого файла
         projectService: true,
       },
     },
     rules: {
+      ...reactPlugin.configs.recommended.rules,
+      ...reactPlugin.configs['jsx-runtime'].rules,
+      ...jsxA11y.configs.recommended.rules,
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
+
       // base
       'use-isnan': 'warn',
       'valid-typeof': 'error',
@@ -52,14 +75,15 @@ export default defineConfig([
       '@typescript-eslint/no-empty-object-type': 'error',
 
       // ...
-      '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+      '@typescript-eslint/consistent-type-definitions': 'off',
+      '@typescript-eslint/consistent-type-imports': 'error',
 
       // Правила именования
       '@typescript-eslint/naming-convention': [
         'error',
         // Типы (T) - PascalCase с префиксом T
         {
-          selector: 'typeLike',
+          selector: 'typeAlias',
           format: ['PascalCase'],
           prefix: ['T'],
         },
@@ -69,7 +93,7 @@ export default defineConfig([
           format: ['PascalCase'],
           prefix: ['I'],
         },
-        // Классы-утилиты (U) - PascalCase с префиксом U
+        // Классы (утилиты и др.) - PascalCase
         {
           selector: 'class',
           format: ['PascalCase'],
@@ -112,4 +136,5 @@ export default defineConfig([
       ],
     },
   },
+  eslintConfigPrettier,
 ]);

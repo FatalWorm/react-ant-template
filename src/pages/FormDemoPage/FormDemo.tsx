@@ -1,8 +1,11 @@
-import { useMemo, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Card, Form, Input, Select, Button, Alert, Typography } from 'antd';
-import { useTranslation } from '@/i18n';
+import { Alert, Button, Card, Form, Input, Select, Typography } from 'antd';
+import { useMemo, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+
+import { PageWrapper } from '@/components/PageWrapper';
+import { useTranslation } from '@/i18n/useTranslation';
+
 import {
   createFormDemoSchema,
   type TFormDemoData,
@@ -32,7 +35,7 @@ function FormDemo() {
   };
 
   return (
-    <div style={{ maxWidth: 600 }}>
+    <PageWrapper maxWidth={600}>
       <Title level={2}>{t.formDemo.title}</Title>
       <Paragraph type="secondary" style={{ marginBottom: 32 }}>
         {t.formDemo.subtitle}
@@ -137,7 +140,7 @@ function FormDemo() {
           showIcon
         />
       )}
-    </div>
+    </PageWrapper>
   );
 }
 

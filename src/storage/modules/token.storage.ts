@@ -1,4 +1,5 @@
-import type { TAuthTokens } from '@/types/authTokens.type';
+import type { TAuthTokens } from '@/api/modules/auth/auth.types';
+
 import { STORAGE_KEYS } from '../keys';
 import { ULocalStorage } from '../localStorage.util';
 

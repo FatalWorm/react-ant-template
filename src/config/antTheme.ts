@@ -1,5 +1,5 @@
-import { theme } from 'antd';
 import type { ThemeConfig } from 'antd';
+import { theme } from 'antd';
 
 type TThemeMode = 'dark' | 'light';
 
@@ -8,7 +8,7 @@ const sharedTokens: ThemeConfig['token'] = {};
 
 const darkConfig: ThemeConfig = {
   algorithm: theme.darkAlgorithm,
-  cssVar: {},
+  cssVar: { prefix: 'ant' },
   token: {
     ...sharedTokens,
   },
@@ -16,7 +16,7 @@ const darkConfig: ThemeConfig = {
 
 const lightConfig: ThemeConfig = {
   algorithm: theme.defaultAlgorithm,
-  cssVar: {},
+  cssVar: { prefix: 'ant' },
   token: {
     ...sharedTokens,
   },
