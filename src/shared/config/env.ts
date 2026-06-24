@@ -1,3 +1,8 @@
+/**
+ * @module env
+ * @description Переменные окружения приложения, типизированные через Vite import.meta.env.
+ */
+
 export const env = {
   // Базовые
   isDev: import.meta.env.DEV,

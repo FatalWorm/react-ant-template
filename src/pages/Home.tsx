@@ -1,54 +1,57 @@
+/**
+ * @module HomePage
+ * @description Главная страница с информационными карточками и демонстрацией функционала.
+ */
+
 import { Card, Col, Row, Tag, theme, Typography } from 'antd';
 import { DateTime } from 'luxon';
 
-import { useLocaleStore } from '@/app/store';
-import { useTranslation } from '@/shared/i18n/useTranslation';
-import { PageWrapper } from '@/shared/ui/PageWrapper';
+import { useTranslation } from '@/shared/i18n';
+import { PageWrapper } from '@/shared/ui';
 
 const { Title, Paragraph, Text } = Typography;
 
 function HomePage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { token } = theme.useToken();
-  const locale = useLocaleStore((state) => state.locale);
-  const now = DateTime.now().setLocale(locale).toFormat('dd MMMM yyyy, HH:mm');
+  const now = DateTime.now().setLocale(i18n.language).toFormat('dd MMMM yyyy, HH:mm');
 
   const features = [
     {
       key: 'zustand',
       icon: '🧩',
-      title: t.home.features.zustandTitle,
-      desc: t.home.features.zustandDesc,
+      title: t('home.features.zustandTitle'),
+      desc: t('home.features.zustandDesc'),
     },
     {
       key: 'rhf',
       icon: '📝',
-      title: t.home.features.rhfTitle,
-      desc: t.home.features.rhfDesc,
+      title: t('home.features.rhfTitle'),
+      desc: t('home.features.rhfDesc'),
     },
     {
       key: 'sc',
       icon: '🎨',
-      title: t.home.features.scTitle,
-      desc: t.home.features.scDesc,
+      title: t('home.features.scTitle'),
+      desc: t('home.features.scDesc'),
     },
     {
       key: 'rw',
       icon: '📋',
-      title: t.home.features.rwTitle,
-      desc: t.home.features.rwDesc,
+      title: t('home.features.rwTitle'),
+      desc: t('home.features.rwDesc'),
     },
     {
       key: 'ky',
       icon: '🌐',
-      title: t.home.features.kyTitle,
-      desc: t.home.features.kyDesc,
+      title: t('home.features.kyTitle'),
+      desc: t('home.features.kyDesc'),
     },
     {
       key: 'vitest',
       icon: '🧪',
-      title: t.home.features.vitestTitle,
-      desc: t.home.features.vitestDesc,
+      title: t('home.features.vitestTitle'),
+      desc: t('home.features.vitestDesc'),
     },
   ];
 
@@ -59,7 +62,7 @@ function HomePage() {
           color="blue"
           style={{ marginBottom: 16, fontSize: 14 }}
         >
-          {t.home.badge}
+          {t('home.badge')}
         </Tag>
         <Title
           style={{
@@ -69,16 +72,16 @@ function HomePage() {
             backgroundClip: 'text',
           }}
         >
-          {t.home.title}
+          {t('home.title')}
         </Title>
         <Paragraph
           type="secondary"
           style={{ fontSize: 18, maxWidth: 600, margin: '0 auto 16px' }}
         >
-          {t.home.subtitle}
+          {t('home.subtitle')}
         </Paragraph>
         <Text code>
-          {t.home.now}: {now}
+          {t('home.now')}: {now}
         </Text>
       </div>
 

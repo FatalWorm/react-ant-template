@@ -1,28 +1,48 @@
 {
   "compilerOptions": {
+    // Папка для кэша сборки (ускоряет повторные проверки TypeScript)
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    // Целевая версия ECMAScript, в которую компилируется код
     "target": "es2023",
+    // Стандартные библиотеки, доступные в коде (DOM позволяет использовать window, document)
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    // Алиасы путей для удобных импортов (например: import Button from '@/components/Button')
     "paths": {
       "@/*": ["./src/*"]
     },
+    // Используем современную систему модулей
     "module": "esnext",
+    // Подключаем типы от Vite (например, для Import.meta.env)
     "types": ["vite/client"],
+    // Разрешаем импорт .json файлов (нужно для типизации i18n словарей)
+    "resolveJsonModule": true,
+    // Пропускать проверку типов в сторонних библиотеках (node_modules), что сильно ускоряет компиляцию
     "skipLibCheck": true,
 
-    /* Bundler mode */
+    /* Bundler mode (Режим сборщика Vite) */
+    // Указываем, что резолв модулей отдается сборщику (Vite/Rollup)
     "moduleResolution": "bundler",
+    // Разрешает импорты файлов с расширениями .ts, .tsx
     "allowImportingTsExtensions": true,
+    // Строгое соблюдение импортов/экспортов (import type для типов)
     "verbatimModuleSyntax": true,
+    // Каждый файл интерпретируется как отдельный модуль (даже без явного export/import)
     "moduleDetection": "force",
+    // TypeScript только проверяет типы, а сборку и транспиляцию кода в JS берет на себя Vite
     "noEmit": true,
+    // Поддержка нового преобразования JSX (в React 17+ не нужно импортировать React в каждом файле)
     "jsx": "react-jsx",
 
-    /* Linting */
+    /* Linting (Строгие проверки качества кода) */
+    // Запрет на неиспользуемые локальные переменные
     "noUnusedLocals": true,
+    // Запрет на неиспользуемые аргументы в функциях
     "noUnusedParameters": true,
+    // Запрет на TypeScript-специфичный синтаксис (типа enum), который сложно собирать бандлерам без поддержки TS
     "erasableSyntaxOnly": true,
+    // Предотвращает ошибки, когда разработчик забыл указать break внутри switch-case
     "noFallthroughCasesInSwitch": true
   },
+  // Эта конфигурация применяется только к рабочему коду в папке src
   "include": ["src"]
 }

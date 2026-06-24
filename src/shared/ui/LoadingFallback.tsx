@@ -1,7 +1,12 @@
+/**
+ * @module LoadingFallback
+ * @description Компонент полноэкранного лоадера для Suspense fallback и отложенной загрузки.
+ */
+
 import { Spin, type SpinProps } from 'antd';
 
-import { useTranslation } from '@/shared/i18n/useTranslation';
-import { PageWrapper, type TPageWrapperProps } from '@/shared/ui/PageWrapper';
+import { useTranslation } from '@/shared/i18n';
+import { PageWrapper, type TPageWrapperProps } from '@/shared/ui';
 
 export type TLoadingFallbackProps = {
   spin?: SpinProps;
@@ -16,7 +21,7 @@ export function LoadingFallback({ spin, wrapper }: TLoadingFallbackProps) {
       <Spin
         fullscreen
         size="large"
-        tip={t.common.loading}
+        description={t('common.loading')}
         {...spin}
       />
     </PageWrapper>

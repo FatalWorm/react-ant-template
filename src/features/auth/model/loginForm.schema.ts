@@ -1,11 +1,16 @@
+/**
+ * @module loginForm.schema
+ * @description Zod-схема валидации формы входа (email + пароль) с локализованными сообщениями.
+ */
+
 import { z } from 'zod';
 
-import type { TTranslations } from '@/shared/i18n/i18n.types';
+import type { TFunction } from '@/shared/i18n';
 
-export function createLoginSchema(t: TTranslations) {
+export function createLoginSchema(t: TFunction) {
   return z.object({
-    email: z.email(t.validation.invalidEmail),
-    password: z.string().min(6, t.validation.minChars.replace('{min}', '6')),
+    email: z.email(t('validation.invalidEmail')),
+    password: z.string().min(6, t('validation.minChars', { min: 6 })),
   });
 }
 

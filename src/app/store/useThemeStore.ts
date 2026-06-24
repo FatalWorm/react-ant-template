@@ -1,3 +1,8 @@
+/**
+ * @module useThemeStore
+ * @description Zustand-стор для управления темой (light/dark) с persist в localStorage.
+ */
+
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 

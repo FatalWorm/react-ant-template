@@ -1,14 +1,20 @@
-import type { TDeepStringify } from '@/shared/types/deepStringify.type';
-import type { TDotPaths } from '@/shared/types/dotPaths.type';
+/**
+ * @module i18n.types
+ * @description Типы для i18n, выведенные напрямую из русского JSON-словаря.
+ * Не зависят от module augmentation i18next — работают стабильно с любой версией.
+ */
 
-import type { LOCALE_KEYS } from './i18n.constants';
-import type { ru } from './locales/ru';
+import type ru from './locales/ru.json';
 
-/** Тип всех переводов — структура из русского словаря, значения — string */
-export type TTranslations = TDeepStringify<typeof ru>;
+/** Рекурсивно строит union всех dot-path ключей из JSON-объекта */
+type TFlatKeys<T, Prefix extends string = ''> = {
+  [K in keyof T & string]: T[K] extends Record<string, unknown> ? TFlatKeys<T[K], `${Prefix}${K}.`> : `${Prefix}${K}`;
+}[keyof T & string];
 
-/** Тип ключа перевода в формате dot-path (например 'common.appName') */
-export type TTranslationKey = TDotPaths<TTranslations>;
+/** Все допустимые ключи перевода: 'nav.home' | 'auth.loginTitle' | ... */
+export type TTranslationKey = TFlatKeys<typeof ru>;
 
-/** Поддерживаемые языки */
-export type TLocaleKey = (typeof LOCALE_KEYS)[number];
+/** Типизированная функция перевода */
+export type TFunction = {
+  (key: TTranslationKey, options?: Record<string, unknown>): string;
+};

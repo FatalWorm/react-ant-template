@@ -1,5 +1,10 @@
-import LoginForm from '@/features/auth/ui/LoginForm';
-import { PageWrapper } from '@/shared/ui/PageWrapper';
+/**
+ * @module LoginPage
+ * @description Страница входа — обёртка над LoginForm с центрированным layout.
+ */
+
+import { LoginForm } from '@/features/auth';
+import { PageWrapper } from '@/shared/ui';
 
 export default function LoginPage() {
   return (

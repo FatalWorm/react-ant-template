@@ -1,11 +1,16 @@
+/**
+ * @module RegisterForm
+ * @description Форма регистрации: имя, email, пароль + подтверждение, react-hook-form + Zod.
+ */
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Alert, Button, Card, Form, Input, Typography } from 'antd';
 import { useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useUserStore } from '@/entities/user';
-import { useTranslation } from '@/shared/i18n/useTranslation';
+import { useAuthStore } from '@/entities/user';
+import { useTranslation } from '@/shared/i18n';
 
 import { createRegisterSchema, type TRegisterForm } from '../model/registerForm.schema';
 
@@ -13,9 +18,9 @@ const { Title, Text } = Typography;
 
 function RegisterForm() {
   const navigate = useNavigate();
-  const registerUser = useUserStore((s) => s.register);
-  const error = useUserStore((s) => s.error);
-  const clearError = useUserStore((s) => s.clearError);
+  const registerUser = useAuthStore((s) => s.register);
+  const error = useAuthStore((s) => s.error);
+  const clearError = useAuthStore((s) => s.clearError);
   const { t } = useTranslation();
   const schema = useMemo(() => createRegisterSchema(t), [t]);
 
@@ -41,8 +46,8 @@ function RegisterForm() {
   return (
     <Card style={{ width: '100%', maxWidth: 420 }}>
       <div style={{ textAlign: 'center', marginBottom: 24 }}>
-        <Title level={3}>{t.common.appName}</Title>
-        <Text type="secondary">{t.auth.registerTitle}</Text>
+        <Title level={3}>{t('common.appName')}</Title>
+        <Text type="secondary">{t('auth.registerTitle')}</Text>
       </div>
 
       {error && (
@@ -60,13 +65,13 @@ function RegisterForm() {
           control={control}
           render={({ field }) => (
             <Form.Item
-              label={t.auth.name}
+              label={t('auth.name')}
               validateStatus={errors.name ? 'error' : ''}
               help={errors.name?.message}
             >
               <Input
                 {...field}
-                placeholder={t.auth.namePlaceholder}
+                placeholder={t('auth.namePlaceholder')}
                 autoComplete="name"
               />
             </Form.Item>
@@ -78,14 +83,14 @@ function RegisterForm() {
           control={control}
           render={({ field }) => (
             <Form.Item
-              label={t.auth.email}
+              label={t('auth.email')}
               validateStatus={errors.email ? 'error' : ''}
               help={errors.email?.message}
             >
               <Input
                 {...field}
                 type="email"
-                placeholder={t.auth.emailPlaceholder}
+                placeholder={t('auth.emailPlaceholder')}
                 autoComplete="email"
               />
             </Form.Item>
@@ -97,13 +102,13 @@ function RegisterForm() {
           control={control}
           render={({ field }) => (
             <Form.Item
-              label={t.auth.password}
+              label={t('auth.password')}
               validateStatus={errors.password ? 'error' : ''}
               help={errors.password?.message}
             >
               <Input.Password
                 {...field}
-                placeholder={t.auth.passwordPlaceholder}
+                placeholder={t('auth.passwordPlaceholder')}
                 autoComplete="new-password"
               />
             </Form.Item>
@@ -115,13 +120,13 @@ function RegisterForm() {
           control={control}
           render={({ field }) => (
             <Form.Item
-              label={t.auth.passwordConfirm}
+              label={t('auth.passwordConfirm')}
               validateStatus={errors.passwordConfirm ? 'error' : ''}
               help={errors.passwordConfirm?.message}
             >
               <Input.Password
                 {...field}
-                placeholder={t.auth.passwordPlaceholder}
+                placeholder={t('auth.passwordPlaceholder')}
                 autoComplete="new-password"
               />
             </Form.Item>
@@ -134,13 +139,13 @@ function RegisterForm() {
           loading={isSubmitting}
           block
         >
-          {t.auth.registerButton}
+          {t('auth.registerButton')}
         </Button>
       </form>
 
       <div style={{ textAlign: 'center', marginTop: 16 }}>
         <Text type="secondary">
-          {t.auth.hasAccount} <Link to="/login">{t.auth.loginLink}</Link>
+          {t('auth.hasAccount')} <Link to="/login">{t('auth.loginLink')}</Link>
         </Text>
       </div>
     </Card>

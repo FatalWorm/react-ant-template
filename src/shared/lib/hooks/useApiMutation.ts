@@ -1,3 +1,8 @@
+/**
+ * @module useApiMutation
+ * @description React-хук-обёртка над useMutation (TanStack Query) с типизацией ApiResponse.
+ */
+
 import type { UseMutationOptions } from '@tanstack/react-query';
 import { useMutation } from '@tanstack/react-query';
 
@@ -16,7 +21,7 @@ import { queryClient } from '@/shared/config/queryClient';
 export function useApiMutation<TData, TVariables>(
   mutationFn: (variables: TVariables) => Promise<TData>,
   options?: UseMutationOptions<TData, Error, TVariables> & {
-    invalidateKeys?: readonly unknown[][];
+    invalidateKeys?: readonly (readonly unknown[])[];
   },
 ) {
   const { invalidateKeys, ...mutationOptions } = options ?? {};

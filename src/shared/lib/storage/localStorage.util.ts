@@ -1,3 +1,8 @@
+/**
+ * @module ULocalStorage
+ * @description Типобезопасная обёртка над localStorage с поддержкой JSON-сериализации.
+ */
+
 import { STORAGE_KEYS, type TStorageKey } from './keys';
 
 export class ULocalStorage {

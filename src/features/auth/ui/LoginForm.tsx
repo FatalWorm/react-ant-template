@@ -1,11 +1,16 @@
+/**
+ * @module LoginForm
+ * @description Форма авторизации: email + пароль, react-hook-form + Zod, интеграция с useAuthStore.
+ */
+
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Alert, Button, Card, Form, Input, Typography } from 'antd';
 import { useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useUserStore } from '@/entities/user';
-import { useTranslation } from '@/shared/i18n/useTranslation';
+import { useAuthStore } from '@/entities/user';
+import { useTranslation } from '@/shared/i18n';
 
 import { createLoginSchema, type TLoginForm } from '../model/loginForm.schema';
 
@@ -13,9 +18,9 @@ const { Title, Text } = Typography;
 
 function LoginForm() {
   const navigate = useNavigate();
-  const login = useUserStore((s) => s.login);
-  const error = useUserStore((s) => s.error);
-  const clearError = useUserStore((s) => s.clearError);
+  const login = useAuthStore((s) => s.login);
+  const error = useAuthStore((s) => s.error);
+  const clearError = useAuthStore((s) => s.clearError);
   const { t } = useTranslation();
   const schema = useMemo(() => createLoginSchema(t), [t]);
 
@@ -41,8 +46,8 @@ function LoginForm() {
   return (
     <Card style={{ width: '100%', maxWidth: 420 }}>
       <div style={{ textAlign: 'center', marginBottom: 24 }}>
-        <Title level={3}>{t.common.appName}</Title>
-        <Text type="secondary">{t.auth.loginTitle}</Text>
+        <Title level={3}>{t('common.appName')}</Title>
+        <Text type="secondary">{t('auth.loginTitle')}</Text>
       </div>
 
       {error && (
@@ -60,14 +65,14 @@ function LoginForm() {
           control={control}
           render={({ field }) => (
             <Form.Item
-              label={t.auth.email}
+              label={t('auth.email')}
               validateStatus={errors.email ? 'error' : ''}
               help={errors.email?.message}
             >
               <Input
                 {...field}
                 type="email"
-                placeholder={t.auth.emailPlaceholder}
+                placeholder={t('auth.emailPlaceholder')}
                 autoComplete="email"
               />
             </Form.Item>
@@ -79,13 +84,13 @@ function LoginForm() {
           control={control}
           render={({ field }) => (
             <Form.Item
-              label={t.auth.password}
+              label={t('auth.password')}
               validateStatus={errors.password ? 'error' : ''}
               help={errors.password?.message}
             >
               <Input.Password
                 {...field}
-                placeholder={t.auth.passwordPlaceholder}
+                placeholder={t('auth.passwordPlaceholder')}
                 autoComplete="current-password"
               />
             </Form.Item>
@@ -98,13 +103,13 @@ function LoginForm() {
           loading={isSubmitting}
           block
         >
-          {t.auth.loginButton}
+          {t('auth.loginButton')}
         </Button>
       </form>
 
       <div style={{ textAlign: 'center', marginTop: 16 }}>
         <Text type="secondary">
-          {t.auth.noAccount} <Link to="/register">{t.auth.registerLink}</Link>
+          {t('auth.noAccount')} <Link to="/register">{t('auth.registerLink')}</Link>
         </Text>
       </div>
     </Card>

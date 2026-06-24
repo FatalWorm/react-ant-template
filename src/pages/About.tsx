@@ -1,8 +1,13 @@
+/**
+ * @module AboutPage
+ * @description Страница «О проекте» — обзор технологий и архитектуры шаблона.
+ */
+
 import { Card, Table, theme, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 
-import { useTranslation } from '@/shared/i18n/useTranslation';
-import { PageWrapper } from '@/shared/ui/PageWrapper';
+import { useTranslation } from '@/shared/i18n';
+import { PageWrapper } from '@/shared/ui';
 
 import packageJson from '../../package.json';
 
@@ -34,18 +39,18 @@ function AboutPage() {
 
   const columns: ColumnsType<TDependency> = [
     {
-      title: t.techStack?.name || 'Пакет',
+      title: t('techStack.name'),
       dataIndex: 'name',
       key: 'name',
       render: (text) => <strong>{text}</strong>,
     },
     {
-      title: t.techStack?.version || 'Версия',
+      title: t('techStack.version'),
       dataIndex: 'version',
       key: 'version',
     },
     {
-      title: t.techStack?.type || 'Тип',
+      title: t('techStack.type'),
       dataIndex: 'type',
       key: 'type',
       render: (type) => (
@@ -71,12 +76,12 @@ function AboutPage() {
         flexDirection: 'column',
       }}
     >
-      <Title level={2}>{t.techStack?.title || 'Технологический стек'}</Title>
+      <Title level={2}>{t('techStack.title')}</Title>
       <Paragraph
         type="secondary"
         style={{ fontSize: 16, marginBottom: 32 }}
       >
-        {t.techStack?.description || 'Список всех библиотек и инструментов, используемых в данном проекте.'}
+        {t('techStack.description')}
       </Paragraph>
 
       <Card

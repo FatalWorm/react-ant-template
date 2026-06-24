@@ -1,3 +1,8 @@
+/**
+ * @module user.types
+ * @description Типы данных модуля авторизации: пользователь, токены, креденшалы.
+ */
+
 export type TAuthTokens = {
   accessToken: string;
   refreshToken: string;

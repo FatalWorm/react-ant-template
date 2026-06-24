@@ -1,3 +1,8 @@
+/**
+ * @module App
+ * @description Корневой компонент приложения: провайдеры + роутер.
+ */
+
 import { RouterProvider } from 'react-router-dom';
 
 import { AppProviders } from '@/app/providers';

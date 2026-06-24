@@ -1,3 +1,8 @@
+/**
+ * @module LayoutContent
+ * @description Контентная область MainLayout: адаптивные отступы, минимальная высота viewport.
+ */
+
 import { Layout, theme } from 'antd';
 import { Outlet } from 'react-router-dom';
 

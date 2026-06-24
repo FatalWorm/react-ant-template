@@ -1,16 +1,16 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { App as AntApp, ConfigProvider } from 'antd';
-import { lazy, type ReactNode, Suspense, useEffect, useMemo } from 'react';
+import { lazy, type ReactNode, Suspense, useEffect, useMemo, useState } from 'react';
 
-import { useLocaleStore, useThemeStore } from '@/app/store';
+import { useThemeStore } from '@/app/store';
 import { GlobalStyles } from '@/app/styles/GlobalStyles';
-import { useUserStore } from '@/entities/user';
+import { useAuthStore } from '@/entities/user';
 import { getAntTheme } from '@/shared/config/antTheme';
 import { env } from '@/shared/config/env';
 import { queryClient } from '@/shared/config/queryClient';
-import { I18nProvider } from '@/shared/i18n/i18n.provider';
-import { ErrorBoundary } from '@/shared/ui/ErrorBoundary';
-import { LoadingFallback } from '@/shared/ui/LoadingFallback';
+import { ANT_LOCALES, i18n } from '@/shared/i18n';
+import { ErrorBoundary } from '@/shared/ui';
+import { LoadingFallback } from '@/shared/ui';
 
 const ReactQueryDevtools = env.isDev
   ? lazy(() =>
@@ -25,14 +25,28 @@ type TAppProvidersProps = {
 };
 
 export function AppProviders({ children }: TAppProvidersProps) {
-  const checkAuth = useUserStore((s) => s.checkAuth);
+  const checkAuth = useAuthStore((s) => s.checkAuth);
   const mode = useThemeStore((s) => s.mode);
-  const antLocale = useLocaleStore((s) => s.antLocale);
   const antTheme = useMemo(() => getAntTheme(mode), [mode]);
+
+  /** Ant Design locale, синхронизируется с i18next */
+  const [antLocale, setAntLocale] = useState(ANT_LOCALES[i18n.language] ?? ANT_LOCALES['ru']);
 
   useEffect(() => {
     checkAuth();
   }, [checkAuth]);
+
+  /** Подписка на смену языка — обновляем Ant Design locale */
+  useEffect(() => {
+    const handleLangChange = (lng: string) => {
+      setAntLocale(ANT_LOCALES[lng] ?? ANT_LOCALES['ru']);
+    };
+
+    i18n.on('languageChanged', handleLangChange);
+    return () => {
+      i18n.off('languageChanged', handleLangChange);
+    };
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -42,20 +56,18 @@ export function AppProviders({ children }: TAppProvidersProps) {
       >
         <AntApp>
           <GlobalStyles />
-          <I18nProvider>
-            <ErrorBoundary>
-              <Suspense
-                fallback={
-                  <LoadingFallback
-                    wrapper={{ justify: 'center', align: 'center', style: { minHeight: '100vh' } }}
-                    spin={{ size: 'large' }}
-                  />
-                }
-              >
-                {children}
-              </Suspense>
-            </ErrorBoundary>
-          </I18nProvider>
+          <ErrorBoundary>
+            <Suspense
+              fallback={
+                <LoadingFallback
+                  wrapper={{ justify: 'center', align: 'center', style: { minHeight: '100vh' } }}
+                  spin={{ size: 'large' }}
+                />
+              }
+            >
+              {children}
+            </Suspense>
+          </ErrorBoundary>
         </AntApp>
       </ConfigProvider>
       <Suspense fallback={null}>

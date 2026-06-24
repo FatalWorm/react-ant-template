@@ -1,7 +1,42 @@
+/**
+ * @module ErrorBoundary
+ * @description React Error Boundary — перехватчик необработанных ошибок рендеринга.
+ * Разделён на тонкий class-wrapper (React API) и функциональный ErrorFallback (UI с i18n).
+ */
+
 import { Button, Result } from 'antd';
 import { Component, type ErrorInfo, type ReactNode } from 'react';
 
-import { I18nContext } from '@/shared/i18n/i18n.context';
+import { useTranslation } from '@/shared/i18n';
+
+// ─── Fallback UI (функциональный компонент с хуком) ──────────────────────────
+
+type TFallbackProps = {
+  error: Error;
+  onReset: () => void;
+};
+
+export function ErrorFallback({ error, onReset }: TFallbackProps) {
+  const { t } = useTranslation();
+
+  return (
+    <Result
+      status="error"
+      title={t('errors.somethingWentWrong')}
+      subTitle={error.message ?? t('errors.unexpectedError')}
+      extra={
+        <Button
+          type="primary"
+          onClick={onReset}
+        >
+          {t('errors.tryAgain')}
+        </Button>
+      }
+    />
+  );
+}
+
+// ─── Error Boundary (тонкий class-wrapper, без UI-логики) ────────────────────
 
 type TProps = {
   children: ReactNode;
@@ -14,9 +49,6 @@ type TState = {
 };
 
 export class ErrorBoundary extends Component<TProps, TState> {
-  static contextType = I18nContext;
-  declare context: React.ContextType<typeof I18nContext>;
-
   constructor(props: TProps) {
     super(props);
     this.state = { hasError: false, error: null };
@@ -36,26 +68,13 @@ export class ErrorBoundary extends Component<TProps, TState> {
 
   render() {
     if (this.state.hasError) {
-      if (this.props.fallback) {
-        return this.props.fallback;
-      }
-
-      const t = this.context?.t;
-
       return (
-        <Result
-          status="error"
-          title={t?.errors.somethingWentWrong ?? 'Что-то пошло не так'}
-          subTitle={this.state.error?.message ?? t?.errors.unexpectedError ?? 'Произошла непредвиденная ошибка'}
-          extra={
-            <Button
-              type="primary"
-              onClick={this.handleReset}
-            >
-              {t?.errors.tryAgain ?? 'Попробовать снова'}
-            </Button>
-          }
-        />
+        this.props.fallback ?? (
+          <ErrorFallback
+            error={this.state.error!}
+            onReset={this.handleReset}
+          />
+        )
       );
     }
 

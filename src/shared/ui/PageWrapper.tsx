@@ -1,3 +1,8 @@
+/**
+ * @module PageWrapper
+ * @description Обёртка страниц: центрирование контента, анимация появления, адаптивные отступы.
+ */
+
 import { Flex, type FlexProps, theme } from 'antd';
 import type { CSSProperties, ReactNode } from 'react';
 

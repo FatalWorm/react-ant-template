@@ -1,3 +1,8 @@
+/**
+ * @module GlobalStyles
+ * @description Глобальные CSS-стили: сброс, базовая типографика, плавные переходы темы.
+ */
+
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`

@@ -1,3 +1,8 @@
+/**
+ * @module queryClient
+ * @description Глобальный QueryClient для TanStack Query с настройками по умолчанию.
+ */
+
 import { QueryClient } from '@tanstack/react-query';
 
 export const queryClient = new QueryClient({

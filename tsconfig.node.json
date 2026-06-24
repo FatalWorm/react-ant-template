@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
+    // Папка для кэша сборки
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
     "target": "es2023",
+    // Для Node.js окружения не нужны типы DOM (убрали DOM и DOM.Iterable)
     "lib": ["ES2023"],
     "module": "esnext",
+    // Подключаем глобальные типы Node.js (позволяет использовать process.env, __dirname, path)
     "types": ["node"],
+    // Пропускать проверку типов в сторонних библиотеках для ускорения
     "skipLibCheck": true,
 
     /* Bundler mode */
@@ -12,13 +16,15 @@
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "moduleDetection": "force",
+    // TypeScript используется только как чекер, ничего не компилирует
     "noEmit": true,
 
-    /* Linting */
+    /* Linting (Строгие проверки) */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
+  // Эта конфигурация применяется исключительно к файлам, работающим в среде Node (например, конфигурация Vite)
   "include": ["vite.config.ts"]
 }

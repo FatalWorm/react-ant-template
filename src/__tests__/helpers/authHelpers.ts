@@ -1,4 +1,4 @@
-import { useAuthStore } from '@/entities/user/model/useUserStore';
+import { useAuthStore } from '@/entities/user';
 
 /**
  * Устанавливает состояние авторизации в сторе для тестов.

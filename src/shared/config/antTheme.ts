@@ -1,3 +1,8 @@
+/**
+ * @module antTheme
+ * @description Конфигурация темы Ant Design 5: токены, кастомные компоненты, расширенные алиасы.
+ */
+
 import type { ThemeConfig } from 'antd';
 import { theme } from 'antd';
 import type { AliasToken } from 'antd/es/theme/interface';

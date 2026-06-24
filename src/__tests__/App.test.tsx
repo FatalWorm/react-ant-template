@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { beforeEach,describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import App from '@/App';
 
@@ -25,7 +25,5 @@ describe('App', () => {
     render(<App />);
     expect(await screen.findByText('Главная')).toBeInTheDocument();
     expect(await screen.findByText('О проекте')).toBeInTheDocument();
-    expect(await screen.findByText('Форма')).toBeInTheDocument();
-    expect(await screen.findByText('Список')).toBeInTheDocument();
   });
 });

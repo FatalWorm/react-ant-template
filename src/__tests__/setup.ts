@@ -1,5 +1,10 @@
 import '@testing-library/jest-dom';
 
+import { i18n } from '@/shared/i18n';
+
+// В jsdom LanguageDetector определяет язык как 'en' — принудительно ставим 'ru' для тестов
+i18n.changeLanguage('ru');
+
 // Polyfill matchMedia (needed by antd in jsdom)
 /* eslint-disable @typescript-eslint/no-empty-function */
 Object.defineProperty(window, 'matchMedia', {

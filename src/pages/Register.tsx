@@ -1,5 +1,10 @@
-import RegisterForm from '@/features/auth/ui/RegisterForm';
-import { PageWrapper } from '@/shared/ui/PageWrapper';
+/**
+ * @module RegisterPage
+ * @description Страница регистрации — обёртка над RegisterForm с центрированным layout.
+ */
+
+import { RegisterForm } from '@/features/auth';
+import { PageWrapper } from '@/shared/ui';
 
 export default function RegisterPage() {
   return (
