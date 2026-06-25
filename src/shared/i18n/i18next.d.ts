@@ -11,10 +11,24 @@
  */
 
 import 'i18next';
+import 'react-i18next';
 
 import type ru from './locales/ru.json';
 
 declare module 'i18next' {
+  interface CustomTypeOptions {
+    /** Пространство имён по умолчанию */
+    defaultNS: 'translation';
+    /** Запрещаем возврат null — t() всегда возвращает string */
+    returnNull: false;
+    /** Ресурсы строятся по эталонному ru.json (fallbackLng) */
+    resources: {
+      translation: typeof ru;
+    };
+  }
+}
+
+declare module 'react-i18next' {
   interface CustomTypeOptions {
     /** Пространство имён по умолчанию */
     defaultNS: 'translation';
