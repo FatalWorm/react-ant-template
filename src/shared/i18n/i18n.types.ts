@@ -1,20 +1,11 @@
 /**
  * @module i18n.types
- * @description Типы для i18n, выведенные напрямую из русского JSON-словаря.
- * Не зависят от module augmentation i18next — работают стабильно с любой версией.
+ * @description Публичные типы i18n-слоя.
+ *
+ * Строгая типизация обеспечена через module augmentation в `i18next.d.ts`:
+ * `CustomTypeOptions.resources` регистрирует `ru.json` как эталон,
+ * после чего i18next генерирует все типы нативно — без ручных утилит.
  */
 
-import type ru from './locales/ru.json';
-
-/** Рекурсивно строит union всех dot-path ключей из JSON-объекта */
-type TFlatKeys<T, Prefix extends string = ''> = {
-  [K in keyof T & string]: T[K] extends Record<string, unknown> ? TFlatKeys<T[K], `${Prefix}${K}.`> : `${Prefix}${K}`;
-}[keyof T & string];
-
-/** Все допустимые ключи перевода: 'nav.home' | 'auth.loginTitle' | ... */
-export type TTranslationKey = TFlatKeys<typeof ru>;
-
-/** Типизированная функция перевода */
-export type TFunction = {
-  (key: TTranslationKey, options?: Record<string, unknown>): string;
-};
+export type { TFunction } from 'i18next';
+export type { ParseKeys as TTranslationKey } from 'i18next';

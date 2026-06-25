@@ -6,7 +6,7 @@
  * - Автодетекция языка (localStorage → navigator)
  * - Fallback на русский
  * - Интерполяция: {{variable}}
- * - Типобезопасность через TTypedTFunction (i18n.types.ts)
+ * - Типобезопасность через module augmentation (i18next.d.ts)
  *
  * Доступ к переводам:
  * - React-компоненты: `useTranslation()` → реактивный t()
@@ -17,7 +17,6 @@ import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
-import type { TFunction } from './i18n.types';
 import be from './locales/be.json';
 import en from './locales/en.json';
 import ru from './locales/ru.json';
@@ -49,6 +48,6 @@ i18n
  * Типизированная функция перевода для использования **вне React-компонентов**.
  * В React-компонентах используйте `useTranslation()`.
  */
-export const t = i18n.t.bind(i18n) as unknown as TFunction;
+export const t = i18n.t.bind(i18n);
 
 export default i18n;
