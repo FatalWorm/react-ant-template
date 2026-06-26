@@ -10,13 +10,13 @@
 
 Эти документы обязательны к прочтению всем разработчикам проекта:
 
-- [📖 Правила написания кода (Code Conventions)](./code_conventions.md)
+- [📖 Правила написания кода (Code Conventions)](./CodeConventions.md)
   _Технологический стек, архитектура FSD (Feature-Sliced Design), структура директорий, правило импортов между слоями, именование файлов, правила типизации, публичный API модулей, работа с Ant Design и styled-components._
-- [🤝 Работа с Git и коммитами (Contributing)](./contributing.md)
+- [🤝 Работа с Git и коммитами (Contributing)](./Contributing.md)
   _Conventional Commits (все допустимые типы включая кастомные wip/hotfix), обзор Git Hooks (pre-commit, commit-msg, pre-push), переменные окружения и feature flags, полезные npm-скрипты._
-- [📦 Оптимизация сборки (Bundle Optimization)](./bundle_optimization.md)
+- [📦 Оптимизация сборки (Bundle Optimization)](./BundleOptimization.md)
   _Code Splitting на vendor-чанки, Brotli-сжатие, Lazy Loading страниц и DevTools, Bundle Visualizer, оптимизация шрифтов, чеклист перед деплоем._
-- [🔐 Поток авторизации (Auth Flow)](./auth_flow.md)
+- [🔐 Поток авторизации (Auth Flow)](./AuthFlow.md)
   _Диаграммы потока: инициализация, логин, silent refresh, route guards. Таблица ответственности файлов, обработка ошибок через ApiError, feature flag VITE_AUTH_ENABLED._
 
 ---
@@ -25,11 +25,11 @@
 
 В папке `deprecated` хранятся исторические документы, неактуальные планы переходов и старые черновики:
 
-- [🏗 Внедрение FSD (Feature-Sliced Design)](./deprecated/fsd_transition_plan.md)
-  _Стратегия и пошаговый план миграции кодовой базы на методологию FSD._
-- [🧩 Модульная архитектура](./deprecated/modular_transition_plan.md)
-  _План по распиливанию монолитных кусков приложения на независимые модули._
-- [📦 Миграция на Redux Toolkit](./deprecated/migration-redux-toolkit.md)
-  _Руководство по переходу на современный стек стейт-менеджмента._
-- [📄 Шаблоны архитектурных решений](./deprecated/architecture_patterns.md)
-  _Различные черновые записи, паттерны и наработки по архитектуре приложения._
+- ~~[🏗 Внедрение FSD (Feature-Sliced Design)](./deprecated/fsd_transition_plan.md)
+  _Стратегия и пошаговый план миграции кодовой базы на методологию FSD._~~
+- ~~[🧩 Модульная архитектура](./deprecated/modular_transition_plan.md)
+  _План по распиливанию монолитных кусков приложения на независимые модули._~~
+- ~~[📦 Миграция на Redux Toolkit](./deprecated/migration-redux-toolkit.md)
+  _Руководство по переходу на современный стек стейт-менеджмента._~~
+- ~~[📄 Шаблоны архитектурных решений](./deprecated/architecture_patterns.md)
+  _Различные черновые записи, паттерны и наработки по архитектуре приложения._~~

@@ -10,7 +10,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useAuthStore } from '@/entities/user';
-import { useTranslation } from '@/shared/i18n';
+import { useAppTranslation } from '@/shared/i18n';
 
 import { createRegisterSchema, type TRegisterForm } from '../model/registerForm.schema';
 
@@ -21,7 +21,7 @@ function RegisterForm() {
   const registerUser = useAuthStore((s) => s.register);
   const error = useAuthStore((s) => s.error);
   const clearError = useAuthStore((s) => s.clearError);
-  const { t } = useTranslation();
+  const { t } = useAppTranslation();
   const schema = useMemo(() => createRegisterSchema(t), [t]);
 
   const {

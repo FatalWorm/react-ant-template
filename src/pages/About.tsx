@@ -6,7 +6,7 @@
 import { Card, Table, theme, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 
-import { useTranslation } from '@/shared/i18n';
+import { useAppTranslation } from '@/shared/i18n';
 import { PageWrapper } from '@/shared/ui';
 
 import packageJson from '../../package.json';
@@ -20,7 +20,7 @@ type TDependency = {
 };
 
 function AboutPage() {
-  const { t } = useTranslation();
+  const { t } = useAppTranslation();
   const { token } = theme.useToken();
 
   const dependencies: TDependency[] = Object.entries(packageJson.dependencies || {}).map(([name, version]) => ({
