@@ -7,7 +7,7 @@
 import { Button, Result } from 'antd';
 import { Component, type ErrorInfo, type ReactNode } from 'react';
 
-import { useTranslation } from '@/shared/i18n';
+import { useAppTranslation } from '@/shared/i18n';
 
 // ─── Fallback UI (функциональный компонент с хуком) ──────────────────────────
 
@@ -17,7 +17,7 @@ type TFallbackProps = {
 };
 
 export function ErrorFallback({ error, onReset }: TFallbackProps) {
-  const { t } = useTranslation();
+  const { t } = useAppTranslation();
 
   return (
     <Result

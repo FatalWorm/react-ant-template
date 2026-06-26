@@ -12,7 +12,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useThemeStore } from '@/app/store';
 import { useAuthStore } from '@/entities/user';
 import { env } from '@/shared/config/env';
-import { SUPPORTED_LANGS, type TLocaleKey, useTranslation } from '@/shared/i18n';
+import { SUPPORTED_LANGS, useAppTranslation } from '@/shared/i18n';
 
 const { Header } = Layout;
 
@@ -21,7 +21,7 @@ export function LayoutHeader() {
   const logout = useAuthStore((s) => s.logout);
   const themeMode = useThemeStore((s) => s.mode);
   const setMode = useThemeStore((s) => s.setMode);
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useAppTranslation();
   const { token } = theme.useToken();
 
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ export function LayoutHeader() {
       <Space>
         {env.i18nEnabled && (
           <Select
-            value={i18n.language as TLocaleKey}
+            value={i18n.language}
             style={{ width: 128 }}
             onChange={(value) => i18n.changeLanguage(value)}
             options={languageOptions}

@@ -5,12 +5,12 @@
 
 import { Layout, theme, Typography } from 'antd';
 
-import { useTranslation } from '@/shared/i18n';
+import { useAppTranslation } from '@/shared/i18n';
 
 const { Footer } = Layout;
 
 export function LayoutFooter() {
-  const { t } = useTranslation();
+  const { t } = useAppTranslation();
   const { token } = theme.useToken();
 
   return (

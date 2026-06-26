@@ -6,13 +6,13 @@
 import { Card, Col, Row, Tag, theme, Typography } from 'antd';
 import { DateTime } from 'luxon';
 
-import { useTranslation } from '@/shared/i18n';
+import { useAppTranslation } from '@/shared/i18n';
 import { PageWrapper } from '@/shared/ui';
 
 const { Title, Paragraph, Text } = Typography;
 
 function HomePage() {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useAppTranslation();
   const { token } = theme.useToken();
   const now = DateTime.now().setLocale(i18n.language).toFormat('dd MMMM yyyy, HH:mm');
 

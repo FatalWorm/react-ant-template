@@ -5,7 +5,7 @@
 
 import { Spin, type SpinProps } from 'antd';
 
-import { useTranslation } from '@/shared/i18n';
+import { useAppTranslation } from '@/shared/i18n';
 import { PageWrapper, type TPageWrapperProps } from '@/shared/ui';
 
 export type TLoadingFallbackProps = {
@@ -14,7 +14,7 @@ export type TLoadingFallbackProps = {
 };
 
 export function LoadingFallback({ spin, wrapper }: TLoadingFallbackProps) {
-  const { t } = useTranslation();
+  const { t } = useAppTranslation();
 
   return (
     <PageWrapper {...wrapper}>
