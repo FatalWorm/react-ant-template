@@ -15,6 +15,7 @@ export const en = {
     form: 'Form',
     list: 'List',
     logout: 'Logout',
+    posts: 'Posts',
   },
   auth: {
     loginTitle: 'Sign In',

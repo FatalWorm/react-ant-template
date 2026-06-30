@@ -19,6 +19,7 @@ export const ru = {
     form: 'Форма',
     list: 'Список',
     logout: 'Выйти',
+    posts: 'Посты',
   },
   auth: {
     loginTitle: 'Вход в аккаунт',

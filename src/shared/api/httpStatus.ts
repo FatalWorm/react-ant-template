@@ -1,10 +1,10 @@
 /**
- * @module httpStatus
+ * @module HttpStatus
  * @description Типизированные HTTP-статусы.
  * Используются вместо магических чисел по всему проекту.
  *
  * @example
- * import { HTTP_STATUS } from '@/shared/api/httpStatus';
+ * import { HTTP_STATUS } from '@/Shared/Api/httpStatus';
  * if (response.status === HTTP_STATUS.UNAUTHORIZED) { ... }
  */
 

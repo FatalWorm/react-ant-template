@@ -1,6 +1,6 @@
-import '@testing-library/jest-dom';
+import { i18n } from '@/Shared/I18n';
 
-import { i18n } from '@/shared/i18n';
+import '@testing-library/jest-dom';
 
 // В jsdom LanguageDetector определяет язык как 'en' — принудительно ставим 'ru' для тестов
 i18n.changeLanguage('ru');

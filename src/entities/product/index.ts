@@ -1,3 +1,2 @@
-export { productApi } from './api/product.api';
-export { productKeys } from './api/product.queryKeys';
-export type { TCreateProduct, TProduct, TUpdateProduct } from './api/product.types';
+export { ProductApi } from './Api/ProductApi';
+export { productKeys, type TCreateProduct, type TProduct, type TUpdateProduct } from './Model';

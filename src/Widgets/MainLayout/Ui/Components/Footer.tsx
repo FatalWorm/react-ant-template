@@ -5,7 +5,7 @@
 
 import { Layout, theme, Typography } from 'antd';
 
-import { useAppTranslation } from '@/shared/i18n';
+import { useAppTranslation } from '@/Shared/I18n';
 
 const { Footer } = Layout;
 

@@ -6,8 +6,8 @@
 import { Card, Col, Row, Tag, theme, Typography } from 'antd';
 import { DateTime } from 'luxon';
 
-import { useAppTranslation } from '@/shared/i18n';
-import { PageWrapper } from '@/shared/ui';
+import { useAppTranslation } from '@/Shared/I18n';
+import { PageWrapper } from '@/Shared/Ui';
 
 const { Title, Paragraph, Text } = Typography;
 

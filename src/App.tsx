@@ -5,8 +5,8 @@
 
 import { RouterProvider } from 'react-router-dom';
 
-import { AppProviders } from '@/app/providers';
-import { router } from '@/app/router/routes';
+import { AppProviders } from '@/App/Providers';
+import { router } from '@/App/Router/Routes';
 
 function App() {
   return (

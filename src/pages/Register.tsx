@@ -3,8 +3,9 @@
  * @description Страница регистрации — обёртка над RegisterForm с центрированным layout.
  */
 
-import { RegisterForm } from '@/features/auth';
-import { PageWrapper } from '@/shared/ui';
+import { RegisterForm } from '@/Features/Auth';
+
+import { PageWrapper } from '@/Shared/Ui';
 
 export default function RegisterPage() {
   return (

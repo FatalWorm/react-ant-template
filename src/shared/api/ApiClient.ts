@@ -1,5 +1,5 @@
 /**
- * @module httpClient
+ * @module ApiClient
  * @description Централизованный HTTP-клиент на базе ky.
  *
  * Основные функции:
@@ -15,12 +15,12 @@
 
 import ky from 'ky';
 
-import { env } from '@/shared/config/env';
-import { tokenStorage } from '@/shared/lib/storage/modules/token.storage';
+import { env } from '@/Shared/Config/Env';
+import { Storage } from '@/Shared/Lib/Storage';
 
 import { ApiError } from './ApiError';
-import { API_ERROR_CODES } from './errorCodes';
-import { HTTP_STATUS } from './httpStatus';
+import { API_ERROR_CODES } from './ErrorCodes';
+import { HTTP_STATUS } from './HttpStatus';
 
 /** Промис текущего refresh-запроса (singleton для race-condition protection) */
 let refreshPromise: Promise<void> | null = null;
@@ -33,7 +33,7 @@ let refreshPromise: Promise<void> | null = null;
  * @throws {ApiError} Если refresh token отсутствует или сервер отклонил запрос
  */
 async function refreshTokens(): Promise<void> {
-  const refreshToken = tokenStorage.getRefreshToken();
+  const refreshToken = Storage.tokens.getRefreshToken();
 
   if (!refreshToken) {
     throw new ApiError({
@@ -58,7 +58,7 @@ async function refreshTokens(): Promise<void> {
   }
 
   const tokens = await res.json();
-  tokenStorage.setTokens(tokens);
+  Storage.tokens.setTokens(tokens);
 }
 
 /**
@@ -76,7 +76,7 @@ export const apiClient = ky.create({
      */
     beforeRequest: [
       ({ request }) => {
-        const token = tokenStorage.getAccessToken();
+        const token = Storage.tokens.getAccessToken();
         if (token) {
           request.headers.set('Authorization', `Bearer ${token}`);
         }
@@ -107,7 +107,7 @@ export const apiClient = ky.create({
         try {
           await refreshPromise;
         } catch {
-          tokenStorage.clearTokens();
+          Storage.tokens.clearTokens();
           if (window.location.pathname !== '/login') {
             window.location.href = '/login';
           }

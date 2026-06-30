@@ -1,5 +1,5 @@
 /**
- * @module errorCodes
+ * @module ErrorCodes
  * @description Серверные коды ошибок, сгруппированные по бизнес-доменам.
  * Должны быть синхронизированы с бэкенд-контрактом.
  *
@@ -10,7 +10,7 @@
  * 4. Тип TApiErrorCode обновится автоматически
  *
  * @example
- * import { API_ERROR_CODES } from '@/shared/api/errorCodes';
+ * import { API_ERROR_CODES } from '@/Shared/Api/errorCodes';
  * if (err.is(API_ERROR_CODES.auth.INVALID_CREDENTIALS)) { ... }
  */
 

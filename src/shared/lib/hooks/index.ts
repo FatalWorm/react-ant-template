@@ -1,4 +1,4 @@
-export { useApiMutation } from './useApiMutation';
-export { useApiQuery } from './useApiQuery';
-export { useDebounce } from './useDebounce';
-export { useThrottle } from './useThrottle';
+export { useApiMutation } from './UseApiMutation';
+export { useApiQuery } from './UseApiQuery';
+export { useDebounce } from './UseDebounce';
+export { useThrottle } from './UseThrottle';

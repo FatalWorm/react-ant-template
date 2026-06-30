@@ -10,8 +10,8 @@
  * }
  */
 
-import type { TResponseMeta } from './api.types';
-import type { TApiErrorCode } from './errorCodes';
+import type { TApiErrorCode } from './ErrorCodes';
+import type { TResponseMeta } from './ResponseMeta';
 
 export class ApiResponse<T> {
   /** HTTP-статус ответа (200, 201, 404...) */

@@ -6,7 +6,7 @@
 import type { UseMutationOptions } from '@tanstack/react-query';
 import { useMutation } from '@tanstack/react-query';
 
-import { queryClient } from '@/shared/config/queryClient';
+import { queryClient } from '@/Shared/Config/QueryClient';
 
 /**
  * Типизированная обёртка над useMutation.
