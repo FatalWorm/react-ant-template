@@ -1,5 +1,5 @@
 /**
- * @module env
+ * @module Env
  * @description Переменные окружения приложения, типизированные через Vite import.meta.env.
  */
 

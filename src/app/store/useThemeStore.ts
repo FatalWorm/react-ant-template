@@ -6,7 +6,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-import { STORAGE_KEYS } from '@/shared/lib/storage';
+import { STORAGE_KEYS } from '@/Shared/Lib/Storage';
 
 type TThemeMode = 'dark' | 'light';
 

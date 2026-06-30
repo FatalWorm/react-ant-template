@@ -1,2 +1,2 @@
-export type { TAuthResponse, TAuthTokens, TLoginCredentials, TRegisterCredentials, TUser } from './api/user.types';
-export { useAuthStore } from './model/useUserStore';
+export type { TAuthResponse, TAuthTokens, TLoginCredentials, TRegisterCredentials, TUser } from './Api/user.types';
+export { useAuthStore } from './Model/UseUserStore';

@@ -4,17 +4,18 @@
  * Демонстрирует работу useApiQuery, useApiMutation, ApiError и API_ERROR_CODES.
  */
 
-import { App, Button, Input, InputNumber, Popconfirm, Space, Table, Typography } from 'antd';
 import { useState } from 'react';
+import { App, Button, Input, InputNumber, Popconfirm, Space, Table, Typography } from 'antd';
 
-import type { TCreateProduct, TProduct } from '@/entities/product';
-import { productApi, productKeys } from '@/entities/product';
-import type { ApiResponse } from '@/shared/api';
-import { ApiError } from '@/shared/api';
-import { API_ERROR_CODES } from '@/shared/api';
-import { useApiMutation } from '@/shared/lib/hooks';
-import { useApiQuery } from '@/shared/lib/hooks';
-import { PageWrapper } from '@/shared/ui';
+import type { TCreateProduct, TProduct } from '@/Entities/Product';
+import { ProductApi, productKeys } from '@/Entities/Product';
+
+import type { ApiResponse } from '@/Shared/Api';
+import { ApiError } from '@/Shared/Api';
+import { API_ERROR_CODES } from '@/Shared/Api';
+import { useApiMutation } from '@/Shared/Lib/Hooks';
+import { useApiQuery } from '@/Shared/Lib/Hooks';
+import { PageWrapper } from '@/Shared/Ui';
 
 const { Title } = Typography;
 
@@ -25,13 +26,13 @@ function ProductsPage() {
 
   /** Запрос списка товаров */
   const { data: response, isLoading } = useApiQuery<ApiResponse<TProduct[]>>(productKeys.lists(), (signal) =>
-    productApi.getAll(signal),
+    ProductApi.getAll(signal),
   );
   const products = response?.data;
 
   /** Мутация: создание товара */
   const { mutate: createProduct, isPending: isCreating } = useApiMutation<ApiResponse<TProduct>, TCreateProduct>(
-    (data) => productApi.create(data),
+    (data) => ProductApi.create(data),
     {
       invalidateKeys: [productKeys.lists()],
       onSuccess: () => {
@@ -54,7 +55,7 @@ function ProductsPage() {
   );
 
   /** Мутация: удаление товара */
-  const { mutate: deleteProduct } = useApiMutation<void, string>((id) => productApi.delete(id), {
+  const { mutate: deleteProduct } = useApiMutation<void, string>((id) => ProductApi.delete(id), {
     invalidateKeys: [productKeys.lists()],
     onSuccess: () => message.success('Товар удалён'),
   });

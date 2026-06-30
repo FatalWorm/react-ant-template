@@ -6,8 +6,8 @@
 import { Card, Table, theme, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 
-import { useAppTranslation } from '@/shared/i18n';
-import { PageWrapper } from '@/shared/ui';
+import { useAppTranslation } from '@/Shared/I18n';
+import { PageWrapper } from '@/Shared/Ui';
 
 import packageJson from '../../package.json';
 

@@ -3,16 +3,17 @@
  * @description Форма регистрации: имя, email, пароль + подтверждение, react-hook-form + Zod.
  */
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Alert, Button, Card, Form, Input, Typography } from 'antd';
 import { useMemo } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Alert, Button, Card, Form, Input, Typography } from 'antd';
 
-import { useAuthStore } from '@/entities/user';
-import { useAppTranslation } from '@/shared/i18n';
+import { useAuthStore } from '@/Entities/User';
 
-import { createRegisterSchema, type TRegisterForm } from '../model/registerForm.schema';
+import { useAppTranslation } from '@/Shared/I18n';
+
+import { createRegisterSchema, type TRegisterForm } from '../Model/RegisterForm.Schema';
 
 const { Title, Text } = Typography;
 

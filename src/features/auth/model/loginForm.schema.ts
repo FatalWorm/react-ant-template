@@ -5,7 +5,7 @@
 
 import { z } from 'zod';
 
-import type { TFunction } from '@/shared/i18n';
+import type { TFunction } from '@/Shared/I18n';
 
 export function createLoginSchema(t: TFunction) {
   return z.object({

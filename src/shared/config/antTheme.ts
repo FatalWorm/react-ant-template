@@ -1,5 +1,5 @@
 /**
- * @module antTheme
+ * @module AntTheme
  * @description Конфигурация темы Ant Design 5: токены, кастомные компоненты, расширенные алиасы.
  */
 

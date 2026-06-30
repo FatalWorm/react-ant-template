@@ -3,8 +3,9 @@
  * @description Страница входа — обёртка над LoginForm с центрированным layout.
  */
 
-import { LoginForm } from '@/features/auth';
-import { PageWrapper } from '@/shared/ui';
+import { LoginForm } from '@/Features/Auth';
+
+import { PageWrapper } from '@/Shared/Ui';
 
 export default function LoginPage() {
   return (

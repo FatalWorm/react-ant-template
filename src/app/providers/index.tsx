@@ -1,16 +1,18 @@
+import { lazy, type ReactNode, Suspense, useEffect, useMemo, useState } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { App as AntApp, ConfigProvider } from 'antd';
-import { lazy, type ReactNode, Suspense, useEffect, useMemo, useState } from 'react';
 
-import { useThemeStore } from '@/app/store';
-import { GlobalStyles } from '@/app/styles/GlobalStyles';
-import { useAuthStore } from '@/entities/user';
-import { getAntTheme } from '@/shared/config/antTheme';
-import { env } from '@/shared/config/env';
-import { queryClient } from '@/shared/config/queryClient';
-import { ANT_LOCALES, i18n } from '@/shared/i18n';
-import { ErrorBoundary } from '@/shared/ui';
-import { LoadingFallback } from '@/shared/ui';
+import { useThemeStore } from '@/App/Store';
+import { GlobalStyles } from '@/App/Styles/GlobalStyles';
+
+import { useAuthStore } from '@/Entities/User';
+
+import { getAntTheme } from '@/Shared/Config/AntTheme';
+import { env } from '@/Shared/Config/Env';
+import { queryClient } from '@/Shared/Config/QueryClient';
+import { ANT_LOCALES, i18n } from '@/Shared/I18n';
+import { ErrorBoundary } from '@/Shared/Ui';
+import { LoadingFallback } from '@/Shared/Ui';
 
 const ReactQueryDevtools = env.isDev
   ? lazy(() =>

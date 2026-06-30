@@ -1,8 +1,8 @@
 import { Layout } from 'antd';
 
-import { LayoutContent } from './components/Content';
-import { LayoutFooter } from './components/Footer';
-import { LayoutHeader } from './components/Header';
+import { LayoutContent } from './Components/Content';
+import { LayoutFooter } from './Components/Footer';
+import { LayoutHeader } from './Components/Header';
 
 export function MainLayout() {
   return (

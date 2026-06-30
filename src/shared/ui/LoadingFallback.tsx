@@ -5,8 +5,8 @@
 
 import { Spin, type SpinProps } from 'antd';
 
-import { useAppTranslation } from '@/shared/i18n';
-import { PageWrapper, type TPageWrapperProps } from '@/shared/ui';
+import { useAppTranslation } from '@/Shared/I18n';
+import { PageWrapper, type TPageWrapperProps } from '@/Shared/Ui';
 
 export type TLoadingFallbackProps = {
   spin?: SpinProps;

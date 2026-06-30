@@ -59,7 +59,26 @@ export default defineConfig([
       ...jsxA11y.configs.recommended.rules, // Включаем все проверки доступности интерфейсов
 
       // Автоматическая сортировка импортов и экспортов (ошибка, если отсортировано неверно)
-      'simple-import-sort/imports': 'error',
+      'simple-import-sort/imports': [
+        'error',
+        {
+          groups: [
+            // Пакеты (react, и сторонние библиотеки)
+            ['^react', '^@?\\w'],
+            // FSD слои (по убыванию уровня)
+            ['^@/App'],
+            ['^@/Pages'],
+            ['^@/Widgets'],
+            ['^@/Features'],
+            ['^@/Entities'],
+            ['^@/Shared'],
+            // Относительные импорты
+            ['^\\.'],
+            // Стили
+            ['^.+\\.s?css$'],
+          ],
+        },
+      ],
       'simple-import-sort/exports': 'error',
 
       // --- Базовые правила JavaScript ---

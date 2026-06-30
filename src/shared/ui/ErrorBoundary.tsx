@@ -4,10 +4,10 @@
  * Разделён на тонкий class-wrapper (React API) и функциональный ErrorFallback (UI с i18n).
  */
 
-import { Button, Result } from 'antd';
 import { Component, type ErrorInfo, type ReactNode } from 'react';
+import { Button, Result } from 'antd';
 
-import { useAppTranslation } from '@/shared/i18n';
+import { useAppTranslation } from '@/Shared/I18n';
 
 // ─── Fallback UI (функциональный компонент с хуком) ──────────────────────────
 

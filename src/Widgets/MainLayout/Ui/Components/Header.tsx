@@ -3,16 +3,18 @@
  * @description Шапка приложения: навигация, переключатель языка и темы, кнопка выхода.
  */
 
+import { useLocation, useNavigate } from 'react-router-dom';
 import LogoutOutlined from '@ant-design/icons/LogoutOutlined';
 import MoonOutlined from '@ant-design/icons/MoonOutlined';
 import SunOutlined from '@ant-design/icons/SunOutlined';
 import { Button, Layout, Menu, Select, Space, theme, Typography } from 'antd';
-import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useThemeStore } from '@/app/store';
-import { useAuthStore } from '@/entities/user';
-import { env } from '@/shared/config/env';
-import { SUPPORTED_LANGS, useAppTranslation } from '@/shared/i18n';
+import { useThemeStore } from '@/App/Store';
+
+import { useAuthStore } from '@/Entities/User';
+
+import { env } from '@/Shared/Config/Env';
+import { SUPPORTED_LANGS, useAppTranslation } from '@/Shared/I18n';
 
 const { Header } = Layout;
 
@@ -30,6 +32,7 @@ export function LayoutHeader() {
   const menuItems = [
     { key: '/', label: t('nav.home') },
     { key: '/about', label: t('nav.about') },
+    { key: '/posts', label: t('nav.posts') },
   ];
 
   const languageOptions = SUPPORTED_LANGS.map((key) => ({

@@ -16,12 +16,13 @@
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
-import { authApi } from '@/entities/user/api/user.api';
-import type { TLoginCredentials, TRegisterCredentials, TUser } from '@/entities/user/api/user.types';
-import { ApiError } from '@/shared/api';
-import { API_ERROR_CODES } from '@/shared/api';
-import { t } from '@/shared/i18n';
-import { tokenStorage } from '@/shared/lib/storage/modules/token.storage';
+import { AuthApi } from '@/Entities/User/Api/user.api';
+import type { TLoginCredentials, TRegisterCredentials, TUser } from '@/Entities/User/Api/user.types';
+
+import { ApiError } from '@/Shared/Api';
+import { API_ERROR_CODES } from '@/Shared/Api';
+import { t } from '@/Shared/I18n';
+import { Storage } from '@/Shared/Lib/Storage';
 
 /**
  * Возвращает локализованное сообщение для ApiError.
@@ -76,7 +77,7 @@ export const useAuthStore = create<TAuthState>()(
       });
 
       try {
-        const response = await authApi.login(credentials);
+        const response = await AuthApi.login(credentials);
 
         if (!response.isSuccess || !response.data) {
           throw new ApiError({
@@ -86,7 +87,7 @@ export const useAuthStore = create<TAuthState>()(
           });
         }
 
-        tokenStorage.setTokens(response.data.tokens);
+        Storage.tokens.setTokens(response.data.tokens);
 
         set((state) => {
           state.user = response.data!.user;
@@ -117,7 +118,7 @@ export const useAuthStore = create<TAuthState>()(
       });
 
       try {
-        const response = await authApi.register(credentials);
+        const response = await AuthApi.register(credentials);
 
         if (!response.isSuccess || !response.data) {
           throw new ApiError({
@@ -127,7 +128,7 @@ export const useAuthStore = create<TAuthState>()(
           });
         }
 
-        tokenStorage.setTokens(response.data.tokens);
+        Storage.tokens.setTokens(response.data.tokens);
 
         set((state) => {
           state.user = response.data!.user;
@@ -153,9 +154,9 @@ export const useAuthStore = create<TAuthState>()(
      */
     logout: async () => {
       try {
-        await authApi.logout();
+        await AuthApi.logout();
       } finally {
-        tokenStorage.clearTokens();
+        Storage.tokens.clearTokens();
         set((state) => {
           state.user = null;
           state.isAuthenticated = false;
@@ -173,7 +174,7 @@ export const useAuthStore = create<TAuthState>()(
      *    автоматически обновит его через refresh token и повторит запрос.
      */
     checkAuth: async () => {
-      if (!tokenStorage.hasTokens()) {
+      if (!Storage.tokens.hasTokens()) {
         set((state) => {
           state.isLoading = false;
           state.isAuthenticated = false;
@@ -182,7 +183,7 @@ export const useAuthStore = create<TAuthState>()(
       }
 
       try {
-        const response = await authApi.getProfile();
+        const response = await AuthApi.getProfile();
 
         if (!response.isSuccess || !response.data) {
           throw new Error('Profile fetch failed');
@@ -194,7 +195,7 @@ export const useAuthStore = create<TAuthState>()(
           state.isLoading = false;
         });
       } catch {
-        tokenStorage.clearTokens();
+        Storage.tokens.clearTokens();
         set((state) => {
           state.isLoading = false;
           state.isAuthenticated = false;

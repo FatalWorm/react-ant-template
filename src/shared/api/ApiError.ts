@@ -6,7 +6,7 @@
  *
  * @example
  * try {
- *   await authApi.login(credentials);
+ *   await AuthApi.login(credentials);
  * } catch (err) {
  *   if (err instanceof ApiError && err.is(API_ERROR_CODES.auth.INVALID_CREDENTIALS)) {
  *     showToast('Неверный email или пароль');
@@ -14,7 +14,7 @@
  * }
  */
 
-import { API_ERROR_CODES, type TApiErrorCode } from './errorCodes';
+import { API_ERROR_CODES, type TApiErrorCode } from './ErrorCodes';
 
 export class ApiError extends Error {
   /** HTTP-статус (401, 404, 500...) */

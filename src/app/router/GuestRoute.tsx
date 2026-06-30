@@ -5,9 +5,10 @@
 
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { useAuthStore } from '@/entities/user';
-import { env } from '@/shared/config/env';
-import { LoadingFallback } from '@/shared/ui';
+import { useAuthStore } from '@/Entities/User';
+
+import { env } from '@/Shared/Config/Env';
+import { LoadingFallback } from '@/Shared/Ui';
 
 export function GuestRoute() {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);

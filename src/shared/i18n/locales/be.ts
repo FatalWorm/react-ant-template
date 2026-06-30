@@ -15,6 +15,7 @@ export const be = {
     form: 'Форма',
     list: 'Спіс',
     logout: 'Выйсці',
+    posts: 'Посты',
   },
   auth: {
     loginTitle: 'Уваход у акаўнт',

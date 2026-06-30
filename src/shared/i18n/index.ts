@@ -2,19 +2,19 @@
  * @module i18n
  * @description Конфигурация i18n-слоя.
  */
+import { initReactI18next, useTranslation, type UseTranslationOptions } from 'react-i18next';
 import type { Locale as AntLocale } from 'antd/es/locale';
 import enUS from 'antd/locale/en_US';
 import ruRU from 'antd/locale/ru_RU';
 import type { TOptions } from 'i18next';
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import { initReactI18next, useTranslation, type UseTranslationOptions } from 'react-i18next';
 
-import type { TDeepKeyPaths } from '../types/DeepKeyPaths.type';
-import type { TDeepStringify } from '../types/DeepStringify.type';
-import { be } from './locales/be';
-import { en } from './locales/en';
-import { ru } from './locales/ru';
+import type { TDeepKeyPaths } from '../Types/TDeepKeyPaths';
+import type { TDeepStringify } from '../Types/TDeepStringify';
+import { be } from './Locales/Be';
+import { en } from './Locales/En';
+import { ru } from './Locales/Ru';
 
 export const SUPPORTED_LANGS = ['ru', 'en', 'be'] as const;
 
